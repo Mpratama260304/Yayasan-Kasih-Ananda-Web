@@ -42,6 +42,11 @@ load_env() {
 	WP_PORT="${WP_PORT:-8080}"
 	PMA_PORT="${PMA_PORT:-8081}"
 	MAILPIT_UI_PORT="${MAILPIT_UI_PORT:-8025}"
+
+	# Handed to the containers so WordPress can resolve its own public
+	# address even when a tunnel hides the original Host header.
+	YKA_PUBLIC_URL="$(site_url)"
+	export YKA_PUBLIC_URL
 }
 
 # Public URL of the development site: Codespaces forwarded host when

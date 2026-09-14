@@ -43,6 +43,7 @@ jobs:
           find wp-content/themes/yka-portal \
                wp-content/plugins/yka-core \
                scripts/php \
+               config/wp \
                -name '*.php' -print0 \
             | xargs -0 -n1 -P4 php -l
 
@@ -89,8 +90,11 @@ jobs:
 
       - name: No dangerous PHP functions
         run: |
+          # Comment lines are stripped first so prose never trips the check.
           if grep -rEn '\b(eval|create_function|shell_exec|passthru|proc_open|popen)\s*\(' \
-               --include='*.php' wp-content/themes/yka-portal wp-content/plugins/yka-core; then
+               --include='*.php' \
+               wp-content/themes/yka-portal wp-content/plugins/yka-core config/wp \
+             | grep -vE ':[0-9]+:[[:space:]]*(\*|//|#)'; then
             echo "::error::Dangerous PHP function call found"
             exit 1
           fi

@@ -128,6 +128,38 @@ Playwright hanya alat pengembangan. Produksi tidak memerlukannya.
 
 ## Pemecahan masalah
 
+### Aset gagal dimuat dengan `ERR_CONNECTION_REFUSED`
+
+Gejalanya: situs terbuka lewat alamat Codespaces, tetapi seluruh CSS, JS,
+fonta, dan gambar gagal dimuat. Konsol peramban menunjukkan alamat
+`localhost:8080` atau `https://localhost:8080`.
+
+**Penyebabnya:** terowongan Codespaces meneruskan permintaan ke kontainer
+dengan header `Host: localhost:8080`, dan menaruh nama host aslinya pada
+`X-Forwarded-Host`. WordPress yang membaca `HTTP_HOST` saja akan menyimpulkan
+alamat situsnya adalah `localhost:8080`, lalu menerbitkan seluruh URL aset
+ke alamat itu — yang tentu saja tidak ada di komputer pengunjung.
+
+Penanganannya ada di `config/wp/yka-config.php`, dengan urutan:
+
+1. `X-Forwarded-Host`, bila lolos daftar izin;
+2. variabel `YKA_PUBLIC_URL`, bila permintaan jelas ditunelkan (diteruskan
+   sebagai HTTPS tetapi mengaku berasal dari localhost) namun host aslinya
+   tidak disertakan;
+3. `Host`, untuk akses langsung dari curl, Playwright, atau peramban di
+   mesin yang sama.
+
+Nilai header divalidasi terhadap daftar izin, sehingga header palsu tidak
+dapat mengalihkan situs ke tempat lain.
+
+Bila gejalanya muncul kembali:
+
+```bash
+./scripts/start.sh      # menyetel ulang YKA_PUBLIC_URL lalu menyalakan ulang
+```
+
+Lalu muat ulang peramban dengan mengabaikan cache (Ctrl/Cmd + Shift + R).
+
 ### "Error establishing a database connection"
 
 Jaringan antar-kontainer terputus. Ini lazim pada Docker-in-Docker,

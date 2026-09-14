@@ -43,7 +43,7 @@ assert() {
 	fi
 }
 
-CUSTOM_PATHS=( "wp-content/themes/yka-portal" "wp-content/plugins/yka-core" "scripts/php" )
+CUSTOM_PATHS=( "wp-content/themes/yka-portal" "wp-content/plugins/yka-core" "scripts/php" "config/wp" )
 
 # -------------------------------------------------------------------
 if [[ "$MODE" != "--http" ]]; then
@@ -74,8 +74,11 @@ else
 	result 0 "no hard-coded environment URLs"
 fi
 
+# Comment lines are stripped first: a security check that fires on prose
+# teaches people to ignore it.
 DANGEROUS="$(grep -rEn '\b(eval|create_function|shell_exec|passthru|proc_open|popen)\s*\(' \
-	--include='*.php' "${CUSTOM_PATHS[@]}" 2>/dev/null || true)"
+	--include='*.php' "${CUSTOM_PATHS[@]}" 2>/dev/null \
+	| grep -vE ':[0-9]+:[[:space:]]*(\*|//|#)' || true)"
 if [[ -n "$DANGEROUS" ]]; then
 	printf '%s\n' "$DANGEROUS" >&2
 	result 1 "dangerous PHP function calls found"

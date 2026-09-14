@@ -18,6 +18,13 @@
 	<exclude-pattern>*/wp/*</exclude-pattern>
 	<exclude-pattern>*/assets/fonts/*</exclude-pattern>
 
+	<!--
+		config/wp/yka-config.php is deliberately absent from the list above.
+		It runs before WordPress loads, so none of the APIs this standard
+		expects are available there: no sanitisation helpers, no translation
+		functions, no $wpdb. It is syntax-checked by scripts/check.sh and CI.
+	-->
+
 	<!-- How to report. -->
 	<arg name="basepath" value="."/>
 	<arg name="colors"/>

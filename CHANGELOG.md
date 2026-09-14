@@ -16,6 +16,10 @@ dipindahkan ke staging.
 
 - Devcontainer GitHub Codespaces dengan Docker-in-Docker, PHP 8.3, Node 22.
 - Docker Compose: WordPress 7.1, MariaDB 11.4, WP-CLI, Mailpit, phpMyAdmin.
+- Konfigurasi wp-config proyek pada `config/wp/yka-config.php`: alamat situs
+  diselesaikan dari `X-Forwarded-Host`, lalu `YKA_PUBLIC_URL`, lalu `Host`,
+  dengan daftar izin nama host agar header palsu tidak dapat mengalihkan
+  situs.
 - Skrip `start`, `bootstrap`, `seed`, `check`, `reset-dev`, `wp`,
   `extract-core`, `fix-docker-network`.
 - Bootstrap idempoten: locale `id_ID`, zona waktu Asia/Jakarta, permalink
