@@ -1,0 +1,28 @@
+/*
+Theme Name: YKA Portal
+Theme URI: https://yayasankasihananda.com/
+Author: Yayasan Kasih Ananda
+Author URI: https://yayasankasihananda.com/
+Description: Tema editorial institusional untuk portal berita dan dokumentasi Yayasan Kasih Ananda beserta unit pendidikan SD, SMP, dan SMK. Tema hibrida: template PHP untuk struktur situs, Gutenberg untuk isi artikel.
+Version: 1.0.0
+Requires at least: 6.5
+Tested up to: 7.1
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: yka-portal
+Tags: education, news, editorial, block-patterns, accessibility-ready, translation-ready, custom-logo, custom-menu, featured-images
+*/
+
+/*
+ * Presentation lives in assets/css/, split by concern and enqueued in order:
+ *
+ *   tokens.css      design tokens only — colours, type scale, spacing
+ *   base.css        element defaults, typography, focus, reduced motion
+ *   layout.css      containers, grids, section rhythm
+ *   components.css  header, nav, cards, buttons, pagination, footer
+ *   editorial.css   article body, galleries, figures, share tools
+ *   utilities.css   a small, deliberate set of helpers
+ *
+ * This file carries the theme header only. Editing it has no visual effect.
+ */

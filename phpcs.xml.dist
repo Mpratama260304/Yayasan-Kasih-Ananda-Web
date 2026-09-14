@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<ruleset name="Yayasan Kasih Ananda">
+	<description>
+		Coding standards for custom YKA code only.
+
+		WordPress core, Rank Math and WPvivid are never linted: fixing another
+		project's style is not this project's job, and the noise would bury
+		real findings in our own code.
+	</description>
+
+	<!-- What to check. -->
+	<file>wp-content/themes/yka-portal</file>
+	<file>wp-content/plugins/yka-core</file>
+	<file>scripts/php</file>
+
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/wp/*</exclude-pattern>
+	<exclude-pattern>*/assets/fonts/*</exclude-pattern>
+
+	<!-- How to report. -->
+	<arg name="basepath" value="."/>
+	<arg name="colors"/>
+	<arg name="extensions" value="php"/>
+	<arg name="parallel" value="8"/>
+	<arg value="sp"/>
+
+	<config name="minimum_wp_version" value="6.5"/>
+	<config name="testVersion" value="8.0-"/>
+
+	<rule ref="WordPress">
+		<!-- Filenames: WordPress expects class-foo.php, which this project
+		     follows in the plugin. Theme templates follow the template
+		     hierarchy, which PHPCS cannot know about. -->
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+
+		<!-- Yoda conditions make institutional code harder to read for the
+		     maintainers who will inherit it. -->
+		<exclude name="WordPress.PHP.YodaConditions.NotYoda"/>
+
+		<!-- Short array syntax is fine; this codebase uses long form for
+		     consistency with core but does not enforce it in tooling. -->
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+
+		<!-- `$value ?: $fallback` is clearer than repeating the expression. -->
+		<exclude name="Universal.Operators.DisallowShortTernary.Found"/>
+
+		<!-- Section banners inside templates are a readability aid. -->
+		<exclude name="Squiz.Commenting.BlockComment.CloserSameLine"/>
+		<exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
+	</rule>
+
+	<rule ref="PHPCompatibilityWP"/>
+
+	<!-- Text domains must match the theme and plugin headers. -->
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="yka-portal"/>
+				<element value="yka-core"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Global prefixes for anything this project puts in the global scope. -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="yka_"/>
+				<element value="YKA_"/>
+				<element value="YKA\Core"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- The WordPress template hierarchy dictates these filenames. -->
+	<rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
+		<exclude-pattern>*/taxonomy-yka_unit.php</exclude-pattern>
+	</rule>
+
+	<!-- Templates legitimately define local variables; the yka_ prefix on
+	     them is a readability convention, not a global-scope concern. -->
+	<rule ref="WordPress.NamingConventions.ValidVariableName">
+		<properties>
+			<property name="allowed_custom_properties" type="array">
+				<element value="Host"/>
+				<element value="Port"/>
+				<element value="SMTPAuth"/>
+				<element value="SMTPSecure"/>
+				<element value="SMTPAutoTLS"/>
+				<element value="Timeout"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- WP-CLI seed and configuration scripts run in a terminal, where
+	     direct output, file-scope variables and long-running queries are
+	     expected and harmless. -->
+	<rule ref="WordPress.Security.EscapeOutput">
+		<exclude-pattern>scripts/php/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.DB.DirectDatabaseQuery">
+		<exclude-pattern>scripts/php/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.WP.I18n">
+		<exclude-pattern>scripts/php/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.Files.FileName">
+		<exclude-pattern>scripts/php/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<exclude-pattern>scripts/php/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.WP.GlobalVariablesOverride">
+		<exclude-pattern>scripts/php/*</exclude-pattern>
+	</rule>
+</ruleset>

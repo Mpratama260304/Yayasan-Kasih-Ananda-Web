@@ -1,0 +1,103 @@
+# ---------------------------------------------------------------
+# Yayasan Kasih Ananda Web Portal — Git ignore rules
+#
+# Rule of thumb: the repository contains custom project code and
+# reproducible configuration ONLY. WordPress core, uploads, the
+# database and any backup archive stay out of version control.
+# ---------------------------------------------------------------
+
+# --- Secrets & environment ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+!wp-content/**/*.key
+auth.json
+
+# --- WordPress core (extracted from wordpress-*.zip at bootstrap) ---
+/wp/
+/wordpress/
+wordpress-*.zip
+
+# --- WordPress runtime content that must never be committed ---
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/upgrade-temp-backup/
+wp-content/cache/
+wp-content/wflogs/
+wp-content/wpvivid*/
+wp-content/backup*/
+wp-content/ai1wm-backups/
+wp-content/languages/
+wp-content/mu-plugins/
+wp-content/debug.log
+wp-content/advanced-cache.php
+wp-content/object-cache.php
+wp-content/db.php
+sitemap*.xml
+sitemap*.xsl
+
+# Third-party plugins/themes are installed by the bootstrap script,
+# not committed. Custom YKA code is explicitly re-included below.
+wp-content/plugins/*
+!wp-content/plugins/yka-core/
+wp-content/themes/*
+!wp-content/themes/yka-portal/
+
+# --- Databases & backups ---
+*.sql
+*.sql.gz
+*.sql.zip
+*.mwb
+/backups/
+/db/
+/dumps/
+*.tar
+*.tar.gz
+*.tgz
+*.bak
+*.dump
+
+# --- Build & dependency artefacts ---
+node_modules/
+vendor/
+.composer/
+.npm/
+.yarn/
+dist/
+build/
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# --- Test output ---
+/tests/.cache/
+/tests/playwright-report/
+/tests/test-results/
+/tests/artifacts/
+playwright-report/
+test-results/
+.playwright/
+
+# --- Tooling caches ---
+.phpcs-cache
+.phpunit.result.cache
+.php-cs-fixer.cache
+.cache/
+
+# --- Editor / OS junk ---
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# VS Code: keep shared settings, ignore personal state
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json

@@ -1,0 +1,504 @@
+/**
+ * The article reading experience: headers, body prose, figures, galleries,
+ * share tools and related stories.
+ *
+ * This site exists to publish articles, so this file matters more than any
+ * decorative homepage effect.
+ */
+
+/* =================================================================
+   Article header
+   ================================================================= */
+
+.yka-article-header {
+	margin-bottom: var(--yka-space-6);
+}
+
+.yka-article-header__meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--yka-space-3);
+	margin-bottom: var(--yka-space-4);
+	font-size: var(--yka-text-xs);
+	letter-spacing: 0.02em;
+	color: var(--yka-text-muted);
+}
+
+.yka-article-header__title {
+	margin: 0 0 var(--yka-space-4);
+	max-width: 24ch;
+	font-size: var(--yka-text-3xl);
+	line-height: 1.1;
+}
+
+@media (min-width: 700px) {
+	.yka-article-header__title {
+		max-width: 19ch;
+	}
+}
+
+/* The lead paragraph is the article's promise. Larger, serif, calm. */
+.yka-article-lead {
+	max-width: 60ch;
+	margin: 0 0 var(--yka-space-5);
+	font-family: var(--yka-font-display);
+	font-size: var(--yka-text-lg);
+	line-height: 1.5;
+	color: #2c3a31;
+}
+
+.yka-byline {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--yka-space-2) var(--yka-space-4);
+	padding-block: var(--yka-space-3);
+	border-top: var(--yka-border-width) solid var(--yka-rule);
+	border-bottom: var(--yka-border-width) solid var(--yka-rule);
+	font-size: var(--yka-text-sm);
+	color: var(--yka-text-muted);
+}
+
+.yka-byline__avatar img {
+	border-radius: 50%;
+}
+
+.yka-byline__name {
+	font-weight: var(--yka-weight-semibold);
+	color: var(--yka-green-900);
+}
+
+.yka-byline__item {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--yka-space-2);
+}
+
+.yka-byline__updated {
+	color: var(--yka-gold-dark);
+}
+
+/* =================================================================
+   Featured photograph
+   ================================================================= */
+
+.yka-article-figure {
+	margin: 0 0 var(--yka-space-6);
+}
+
+.yka-article-figure img {
+	width: 100%;
+	height: auto;
+}
+
+.yka-article-figure figcaption {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--yka-space-2) var(--yka-space-4);
+	justify-content: space-between;
+	padding-top: var(--yka-space-2);
+	border-top: var(--yka-border-width) solid var(--yka-rule);
+}
+
+.yka-article-figure__credit {
+	font-size: var(--yka-text-xs);
+	letter-spacing: 0.02em;
+	color: var(--yka-text-muted);
+	white-space: nowrap;
+}
+
+/* =================================================================
+   Article body
+   Applies to Gutenberg output and to the editor canvas alike.
+   ================================================================= */
+
+.yka-content {
+	max-width: var(--yka-width-prose);
+	font-size: var(--yka-text-md);
+	line-height: var(--yka-leading-prose);
+}
+
+.yka-content > * {
+	margin-block: 0 var(--yka-space-5);
+}
+
+.yka-content > *:last-child {
+	margin-bottom: 0;
+}
+
+.yka-content h2 {
+	margin-top: var(--yka-space-7);
+	font-size: var(--yka-text-xl);
+}
+
+.yka-content h3 {
+	margin-top: var(--yka-space-6);
+	font-size: var(--yka-text-lg);
+}
+
+.yka-content h4 {
+	margin-top: var(--yka-space-5);
+	font-family: var(--yka-font-body);
+	font-size: var(--yka-text-md);
+	font-weight: var(--yka-weight-bold);
+}
+
+.yka-content h2:first-child,
+.yka-content h3:first-child {
+	margin-top: 0;
+}
+
+.yka-content a {
+	text-decoration: underline;
+	text-decoration-color: var(--yka-border-strong);
+}
+
+.yka-content a:hover {
+	text-decoration-color: var(--yka-gold);
+	text-decoration-thickness: 2px;
+}
+
+.yka-content ul,
+.yka-content ol {
+	padding-left: var(--yka-space-5);
+}
+
+.yka-content li {
+	margin-bottom: var(--yka-space-2);
+}
+
+.yka-content figure {
+	margin-block: var(--yka-space-6);
+}
+
+.yka-content figure img {
+	width: 100%;
+	height: auto;
+}
+
+.yka-content .wp-block-image figcaption,
+.yka-content .wp-block-gallery figcaption,
+.yka-content .wp-block-embed figcaption {
+	padding-top: var(--yka-space-2);
+	border-top: var(--yka-border-width) solid var(--yka-rule);
+	font-size: var(--yka-text-sm);
+	color: var(--yka-text-muted);
+	text-align: left;
+}
+
+/* Wide and full-width media inside the prose column. */
+.yka-content .alignwide {
+	width: min(var(--yka-width-content), 100vw - (2 * var(--yka-gutter)));
+	max-width: none;
+	margin-left: calc(50% - min(var(--yka-width-content), 100vw - (2 * var(--yka-gutter))) / 2);
+}
+
+.yka-content .alignfull {
+	width: calc(100vw - (2 * var(--yka-gutter)));
+	max-width: none;
+	margin-left: calc(50% - (100vw - (2 * var(--yka-gutter))) / 2);
+}
+
+@media (max-width: 780px) {
+	.yka-content .alignwide,
+	.yka-content .alignfull {
+		width: 100%;
+		margin-left: 0;
+	}
+}
+
+.yka-content .alignleft {
+	float: left;
+	max-width: 50%;
+	margin: var(--yka-space-2) var(--yka-space-5) var(--yka-space-4) 0;
+}
+
+.yka-content .alignright {
+	float: right;
+	max-width: 50%;
+	margin: var(--yka-space-2) 0 var(--yka-space-4) var(--yka-space-5);
+}
+
+.yka-content .aligncenter {
+	margin-inline: auto;
+}
+
+.yka-content .wp-block-separator {
+	max-width: 96px;
+	margin-block: var(--yka-space-7);
+	margin-inline: 0;
+	border-top: 3px solid var(--yka-gold);
+}
+
+.yka-content .wp-block-pullquote {
+	padding: var(--yka-space-5) 0;
+	border-top: 3px solid var(--yka-gold);
+	border-bottom: 3px solid var(--yka-gold);
+	text-align: left;
+}
+
+.yka-content .wp-block-pullquote blockquote {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.yka-content .wp-block-table td,
+.yka-content .wp-block-table th {
+	border: var(--yka-border-width) solid var(--yka-rule);
+}
+
+.yka-content .wp-block-table.is-style-stripes tbody tr:nth-child(odd) {
+	background: var(--yka-cream);
+}
+
+/* Galleries: native Gutenberg markup, responsive images, no plugin. */
+.yka-content .wp-block-gallery.has-nested-images {
+	gap: var(--yka-space-3);
+}
+
+.yka-content .wp-block-gallery.has-nested-images figure.wp-block-image img {
+	border-radius: var(--yka-radius-sm);
+}
+
+/* --- block style variations registered in inc/blocks.php ---------- */
+
+.is-style-yka-callout {
+	padding: var(--yka-space-5);
+	border-left: 4px solid var(--yka-gold);
+	background: var(--yka-cream);
+}
+
+.is-style-yka-callout > *:last-child {
+	margin-bottom: 0;
+}
+
+.is-style-yka-bordered img {
+	border: var(--yka-border-width) solid var(--yka-border-strong);
+	padding: var(--yka-space-2);
+	background: var(--yka-white);
+}
+
+.is-style-yka-checklist {
+	list-style: none;
+	padding-left: 0;
+}
+
+.is-style-yka-checklist li {
+	position: relative;
+	padding-left: var(--yka-space-6);
+}
+
+.is-style-yka-checklist li::before {
+	content: "";
+	position: absolute;
+	top: 0.55em;
+	left: 0;
+	width: 14px;
+	height: 7px;
+	border-left: 2px solid var(--yka-green-700);
+	border-bottom: 2px solid var(--yka-green-700);
+	transform: rotate(-45deg);
+}
+
+.is-style-yka-short {
+	max-width: 96px;
+	margin-inline: 0;
+	border-top: 3px solid var(--yka-gold);
+}
+
+/* =================================================================
+   Activity facts panel
+   The who / when / where of a documented activity, stated plainly.
+   ================================================================= */
+
+.yka-facts {
+	margin: 0 0 var(--yka-space-6);
+	padding: var(--yka-space-4) var(--yka-space-5);
+	border-left: 3px solid var(--yka-green-800);
+	background: var(--yka-cream);
+	font-size: var(--yka-text-sm);
+}
+
+.yka-facts dl {
+	display: grid;
+	gap: var(--yka-space-2) var(--yka-space-4);
+	margin: 0;
+	grid-template-columns: auto 1fr;
+}
+
+.yka-facts dt {
+	font-weight: var(--yka-weight-semibold);
+	letter-spacing: 0.02em;
+	color: var(--yka-green-900);
+}
+
+.yka-facts dd {
+	margin: 0;
+	color: #414b44;
+}
+
+/* =================================================================
+   Share tools
+   ================================================================= */
+
+.yka-share {
+	margin-top: var(--yka-space-7);
+	padding-top: var(--yka-space-4);
+	border-top: var(--yka-border-width) solid var(--yka-rule);
+}
+
+.yka-share__title {
+	margin: 0 0 var(--yka-space-3);
+	font-family: var(--yka-font-body);
+	font-size: var(--yka-text-xs);
+	font-weight: var(--yka-weight-semibold);
+	letter-spacing: var(--yka-tracking-label);
+	text-transform: uppercase;
+	color: var(--yka-text-muted);
+}
+
+.yka-share__list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--yka-space-2);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.yka-share__list li {
+	margin: 0;
+}
+
+.yka-share__btn {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--yka-space-2);
+	min-height: var(--yka-tap-target);
+	padding: 0 var(--yka-space-4);
+	border: var(--yka-border-width) solid var(--yka-rule);
+	border-radius: var(--yka-radius);
+	background: var(--yka-white);
+	color: var(--yka-green-900);
+	font-size: var(--yka-text-sm);
+	font-weight: var(--yka-weight-semibold);
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.yka-share__btn:hover {
+	border-color: var(--yka-green-700);
+	background: var(--yka-green-100);
+	color: var(--yka-green-950);
+}
+
+.yka-share__btn svg {
+	width: 17px;
+	height: 17px;
+	fill: currentColor;
+	flex: 0 0 auto;
+}
+
+.yka-share__status {
+	display: block;
+	margin-top: var(--yka-space-2);
+	min-height: 1.2em;
+	font-size: var(--yka-text-sm);
+	color: var(--yka-green-800);
+}
+
+/* =================================================================
+   Related stories and unit call to action
+   ================================================================= */
+
+.yka-related {
+	margin-top: var(--yka-space-8);
+	padding-top: var(--yka-space-6);
+	border-top: 2px solid var(--yka-green-900);
+}
+
+.yka-related__title {
+	margin: 0 0 var(--yka-space-5);
+	font-size: var(--yka-text-lg);
+}
+
+.yka-unit-cta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--yka-space-4);
+	margin-top: var(--yka-space-7);
+	padding: var(--yka-space-5);
+	border-top: 3px solid var(--yka-stamp-color, var(--yka-green-800));
+	background: var(--yka-cream);
+}
+
+.yka-unit-cta__text {
+	max-width: 46ch;
+}
+
+.yka-unit-cta__title {
+	margin: 0 0 var(--yka-space-1);
+	font-size: var(--yka-text-lg);
+}
+
+.yka-unit-cta p {
+	margin: 0;
+	font-size: var(--yka-text-sm);
+	color: var(--yka-text-muted);
+}
+
+/* =================================================================
+   Article aside (in-page navigation and quick facts)
+   ================================================================= */
+
+.yka-aside-block + .yka-aside-block {
+	margin-top: var(--yka-space-6);
+}
+
+.yka-aside-block__title {
+	margin: 0 0 var(--yka-space-3);
+	padding-bottom: var(--yka-space-2);
+	border-bottom: 2px solid var(--yka-green-900);
+	font-family: var(--yka-font-body);
+	font-size: var(--yka-text-xs);
+	font-weight: var(--yka-weight-semibold);
+	letter-spacing: var(--yka-tracking-label);
+	text-transform: uppercase;
+	color: var(--yka-green-900);
+}
+
+/* =================================================================
+   Search results
+   ================================================================= */
+
+.yka-searchresult__type {
+	display: inline-block;
+	margin-bottom: var(--yka-space-1);
+	font-size: var(--yka-text-xs);
+	font-weight: var(--yka-weight-semibold);
+	letter-spacing: var(--yka-tracking-label);
+	text-transform: uppercase;
+	color: var(--yka-gold-dark);
+}
+
+.yka-searchresult__url {
+	font-size: var(--yka-text-xs);
+	color: var(--yka-text-muted);
+	word-break: break-word;
+}
+
+/* =================================================================
+   404
+   ================================================================= */
+
+.yka-404__code {
+	margin: 0 0 var(--yka-space-3);
+	font-family: var(--yka-font-display);
+	font-size: var(--yka-text-4xl);
+	line-height: 1;
+	color: var(--yka-gold);
+}

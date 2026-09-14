@@ -1,0 +1,327 @@
+/**
+ * YKA Core — WordPress admin styles.
+ *
+ * Scoped to YKA screens and panels only; nothing here restyles core admin UI
+ * that editors already know how to use.
+ */
+
+/* -------------------------------------------------- Dashboard widget */
+.yka-newsroom__cta {
+	margin: 0 0 16px;
+}
+
+.yka-newsroom__stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+	gap: 8px;
+	margin: 0 0 20px;
+	padding: 0;
+	list-style: none;
+}
+
+.yka-newsroom__stats a {
+	display: block;
+	padding: 10px 12px;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	text-decoration: none;
+	color: inherit;
+	background: #fff;
+}
+
+.yka-newsroom__stats a:hover,
+.yka-newsroom__stats a:focus {
+	border-color: #1f6b46;
+}
+
+.yka-newsroom__stats strong {
+	display: block;
+	font-size: 22px;
+	line-height: 1.2;
+	color: #18583a;
+}
+
+.yka-newsroom__stats span {
+	font-size: 12px;
+	color: #646970;
+}
+
+.yka-newsroom__heading {
+	margin: 20px 0 8px;
+	padding-top: 12px;
+	border-top: 1px solid #f0f0f1;
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #646970;
+}
+
+.yka-newsroom__units,
+.yka-newsroom__posts {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.yka-newsroom__units li,
+.yka-newsroom__posts li {
+	padding: 6px 0;
+	border-bottom: 1px solid #f0f0f1;
+}
+
+.yka-newsroom__units li:last-child,
+.yka-newsroom__posts li:last-child {
+	border-bottom: 0;
+}
+
+.yka-newsroom__units a {
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+	text-decoration: none;
+}
+
+.yka-newsroom__unit-count {
+	color: #646970;
+	font-variant-numeric: tabular-nums;
+}
+
+.yka-newsroom__meta {
+	display: block;
+	font-size: 12px;
+	color: #646970;
+}
+
+.yka-newsroom__empty {
+	margin: 0;
+	color: #646970;
+	font-style: italic;
+}
+
+/* -------------------------------------------------- Post list table */
+.yka-col-thumb img {
+	display: block;
+	width: 80px;
+	height: 54px;
+	object-fit: cover;
+	border-radius: 3px;
+}
+
+.yka-col-thumb--empty {
+	display: block;
+	width: 80px;
+	height: 54px;
+	border: 1px dashed #c3c4c7;
+	border-radius: 3px;
+	background: #f6f7f7;
+}
+
+.yka-col-missing {
+	color: #b32d2e;
+}
+
+.yka-col-muted {
+	color: #a7aaad;
+}
+
+.yka-state {
+	display: inline-block;
+	padding: 1px 7px;
+	border-radius: 3px;
+	font-size: 11px;
+	font-weight: 600;
+	background: #f0f0f1;
+	color: #3c434a;
+}
+
+.yka-state--publish {
+	background: #dfeee4;
+	color: #12462e;
+}
+
+.yka-state--future {
+	background: #fcf3d4;
+	color: #7a5c00;
+}
+
+.yka-state--pending {
+	background: #fbe5e5;
+	color: #8b1d1d;
+}
+
+.yka-state-issues {
+	font-size: 11px;
+	color: #8a6d00;
+	cursor: help;
+}
+
+/* -------------------------------------------------- Editor panels */
+.yka-meta-panel__field {
+	margin: 0 0 14px;
+}
+
+.yka-meta-panel .description {
+	display: block;
+	margin-top: 2px;
+	font-size: 11px;
+	line-height: 1.5;
+}
+
+.yka-checklist__list {
+	margin: 0 0 10px;
+	padding: 0;
+	list-style: none;
+}
+
+.yka-checklist__item {
+	position: relative;
+	margin-bottom: 8px;
+	padding-left: 20px;
+	font-size: 12px;
+	line-height: 1.5;
+}
+
+.yka-checklist__item::before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-weight: 700;
+}
+
+.yka-checklist__item--error {
+	color: #8b1d1d;
+}
+
+.yka-checklist__item--error::before {
+	content: "!";
+	color: #8b1d1d;
+}
+
+.yka-checklist__item--warning {
+	color: #6b5200;
+}
+
+.yka-checklist__item--warning::before {
+	content: "•";
+	color: #b8860b;
+}
+
+.yka-checklist__ok {
+	margin: 0 0 10px;
+	color: #12462e;
+	font-weight: 600;
+}
+
+.yka-checklist__note {
+	margin: 0;
+	font-size: 11px;
+	color: #646970;
+}
+
+.yka-social-caption__text {
+	width: 100%;
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: 12px;
+	line-height: 1.6;
+}
+
+.yka-social-caption__status {
+	margin-left: 8px;
+	font-size: 12px;
+	color: #12462e;
+}
+
+/* -------------------------------------------------- Media picker field */
+.yka-media-field__preview img {
+	display: block;
+	max-width: 260px;
+	height: auto;
+	margin-bottom: 8px;
+	border: 1px solid #dcdcde;
+	border-radius: 3px;
+}
+
+.yka-media-field__remove {
+	color: #b32d2e;
+}
+
+.yka-media-field__remove[hidden] {
+	display: none;
+}
+
+/* -------------------------------------------------- Taxonomy form */
+.yka-term-group__title {
+	margin: 20px 0 0;
+	padding-top: 16px;
+	border-top: 1px solid #dcdcde;
+	font-size: 14px;
+}
+
+.yka-term-fields--add .form-field {
+	margin-bottom: 14px;
+}
+
+/* -------------------------------------------------- Settings & readiness */
+.yka-settings__intro {
+	max-width: 60ch;
+}
+
+.yka-readiness__env {
+	font-size: 14px;
+}
+
+.yka-readiness .yka-env-badge {
+	display: inline-block;
+	padding: 2px 9px;
+	border-radius: 3px;
+	font-size: 12px;
+	letter-spacing: 0.06em;
+}
+
+.yka-readiness .yka-env-badge--local {
+	background: #2b7e54;
+	color: #fff;
+}
+
+.yka-readiness .yka-env-badge--staging {
+	background: #b8860b;
+	color: #fff;
+}
+
+.yka-readiness .yka-env-badge--production {
+	background: #8b1d1d;
+	color: #fff;
+}
+
+.yka-readiness__table {
+	margin-top: 16px;
+}
+
+.yka-readiness__table td,
+.yka-readiness__table th {
+	vertical-align: top;
+}
+
+.yka-readiness__state {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	margin-top: 4px;
+	border-radius: 50%;
+}
+
+.yka-readiness__state--pass {
+	background: #2b7e54;
+}
+
+.yka-readiness__state--fail {
+	background: #b32d2e;
+}
+
+.yka-readiness__state--info {
+	background: #b8860b;
+}
+
+.yka-readiness__table form {
+	margin: 0;
+}

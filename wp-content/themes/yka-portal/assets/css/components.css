@@ -1,0 +1,1304 @@
+/**
+ * Interface components: header, navigation, story units, buttons, footer.
+ */
+
+/* =================================================================
+   Buttons
+   A small system on purpose: one solid, one outlined, one text link.
+   ================================================================= */
+
+.yka-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--yka-space-2);
+	min-height: var(--yka-tap-target);
+	padding: var(--yka-space-2) var(--yka-space-5);
+	border: var(--yka-border-width) solid transparent;
+	border-radius: var(--yka-radius);
+	background: var(--yka-green-800);
+	color: var(--yka-white);
+	font-size: var(--yka-text-sm);
+	font-weight: var(--yka-weight-semibold);
+	line-height: 1.3;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	transition: background-color var(--yka-duration) var(--yka-ease),
+		border-color var(--yka-duration) var(--yka-ease),
+		color var(--yka-duration) var(--yka-ease);
+}
+
+.yka-btn:hover {
+	background: var(--yka-green-700);
+	color: var(--yka-white);
+}
+
+.yka-btn--secondary {
+	border-color: var(--yka-green-800);
+	background: transparent;
+	color: var(--yka-green-800);
+}
+
+.yka-btn--secondary:hover {
+	background: var(--yka-green-100);
+	color: var(--yka-green-900);
+}
+
+.yka-btn--on-dark {
+	border-color: rgba(255, 255, 255, 0.5);
+	background: transparent;
+	color: var(--yka-white);
+}
+
+.yka-btn--on-dark:hover {
+	border-color: var(--yka-white);
+	background: rgba(255, 255, 255, 0.12);
+	color: var(--yka-white);
+}
+
+.yka-btn--small {
+	min-height: 36px;
+	padding: var(--yka-space-1) var(--yka-space-3);
+	font-size: var(--yka-text-xs);
+}
+
+.yka-textlink {
+	font-weight: var(--yka-weight-semibold);
+	text-decoration: none;
+}
+
+.yka-textlink::after {
+	content: " →";
+}
+
+.yka-textlink:hover {
+	text-decoration: underline;
+}
+
+/* =================================================================
+   Unit stamp
+   The recurring identity device of this site: a flat rectangular label
+   naming the education unit. It sits flush against photographs and in
+   front of metadata lines. Not a pill, never rounded.
+   ================================================================= */
+
+.yka-unit-stamp {
+	display: inline-block;
+	padding: 3px var(--yka-space-2);
+	border-left: 3px solid var(--yka-stamp-color, var(--yka-green-800));
+	background: var(--yka-green-100);
+	color: var(--yka-green-950);
+	font-size: var(--yka-text-xs);
+	font-weight: var(--yka-weight-semibold);
+	letter-spacing: var(--yka-tracking-label);
+	text-transform: uppercase;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+a.yka-unit-stamp:hover {
+	background: var(--yka-stamp-color, var(--yka-green-800));
+	color: var(--yka-white);
+}
+
+.yka-unit-stamp--yayasan {
+	--yka-stamp-color: var(--yka-unit-yayasan);
+}
+
+.yka-unit-stamp--sd {
+	--yka-stamp-color: var(--yka-unit-sd);
+}
+
+.yka-unit-stamp--smp {
+	--yka-stamp-color: var(--yka-unit-smp);
+}
+
+.yka-unit-stamp--smk {
+	--yka-stamp-color: var(--yka-unit-smk);
+}
+
+/* Overlaid on a photograph, bottom-left, no rounding, no blur. */
+.yka-unit-stamp--overlay {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	border-left: 0;
+	border-top: 3px solid var(--yka-stamp-color, var(--yka-green-800));
+	background: var(--yka-white);
+}
+
+/* =================================================================
+   Metadata line
+   ================================================================= */
+
+.yka-meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--yka-space-2);
+	margin: 0 0 var(--yka-space-3);
+	font-size: var(--yka-text-xs);
+	letter-spacing: 0.02em;
+	color: var(--yka-text-muted);
+}
+
+.yka-meta a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.yka-meta a:hover {
+	color: var(--yka-link);
+	text-decoration: underline;
+}
+
+.yka-meta__sep {
+	color: var(--yka-border-strong);
+}
+
+.yka-meta__category {
+	font-weight: var(--yka-weight-semibold);
+	text-transform: uppercase;
+	letter-spacing: var(--yka-tracking-label);
+	color: var(--yka-green-800);
+}
+
+/* =================================================================
+   Story components
+   Four deliberately different shapes so a page never reads as a row of
+   identical cards.
+   ================================================================= */
+
+.yka-story {
+	display: flex;
+	flex-direction: column;
+	gap: var(--yka-space-3);
+}
+
+.yka-story__figure {
+	position: relative;
+	margin: 0;
+	overflow: hidden;
+	background: var(--yka-green-100);
+}
+
+.yka-story__figure img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 320ms var(--yka-ease);
+}
+
+.yka-story:hover .yka-story__figure img {
+	transform: scale(1.02);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.yka-story:hover .yka-story__figure img {
+		transform: none;
+	}
+}
+
+.yka-story__title {
+	margin: 0;
+	font-size: var(--yka-text-lg);
+	line-height: var(--yka-leading-snug);
+}
+
+.yka-story__title a {
+	color: var(--yka-green-950);
+	text-decoration: none;
+}
+
+.yka-story__title a:hover {
+	color: var(--yka-green-700);
+	text-decoration: underline;
+	text-decoration-color: var(--yka-gold);
+	text-decoration-thickness: 2px;
+}
+
+.yka-story__excerpt {
+	margin: 0;
+	font-size: var(--yka-text-base);
+	line-height: var(--yka-leading-normal);
+	color: #414b44;
+}
+
+/* --- lead story: the largest item on the page -------------------- */
+
+.yka-story--lead .yka-story__title {
+	font-size: var(--yka-text-2xl);
+}
+
+.yka-story--lead .yka-story__figure {
+	aspect-ratio: 16 / 9;
+}
+
+.yka-story--lead .yka-story__excerpt {
+	max-width: 56ch;
+	font-size: var(--yka-text-md);
+}
+
+/* --- secondary story --------------------------------------------- */
+
+.yka-story--secondary .yka-story__figure {
+	aspect-ratio: 4 / 3;
+}
+
+.yka-story--secondary .yka-story__title {
+	font-size: var(--yka-text-lg);
+}
+
+/* --- compact story: small image beside the headline --------------- */
+
+.yka-story--compact {
+	flex-direction: row;
+	gap: var(--yka-space-4);
+	align-items: flex-start;
+}
+
+.yka-story--compact .yka-story__figure {
+	flex: 0 0 96px;
+	aspect-ratio: 1 / 1;
+}
+
+.yka-story--compact .yka-story__title {
+	font-size: var(--yka-text-base);
+	font-family: var(--yka-font-body);
+	font-weight: var(--yka-weight-semibold);
+	line-height: var(--yka-leading-snug);
+}
+
+.yka-story--compact .yka-meta {
+	margin-bottom: var(--yka-space-1);
+}
+
+/* --- headline only: text, no image -------------------------------- */
+
+.yka-story--headline {
+	gap: var(--yka-space-1);
+}
+
+.yka-story--headline .yka-story__title {
+	font-family: var(--yka-font-body);
+	font-size: var(--yka-text-base);
+	font-weight: var(--yka-weight-semibold);
+	line-height: var(--yka-leading-snug);
+}
+
+/* --- archive row: wide horizontal item ---------------------------- */
+
+.yka-story--row {
+	flex-direction: column;
+	gap: var(--yka-space-4);
+}
+
+@media (min-width: 680px) {
+	.yka-story--row {
+		flex-direction: row;
+		align-items: flex-start;
+	}
+
+	.yka-story--row .yka-story__figure {
+		flex: 0 0 280px;
+		aspect-ratio: 4 / 3;
+	}
+
+	.yka-story--row .yka-story__body {
+		flex: 1 1 auto;
+	}
+}
+
+.yka-story--row .yka-story__figure {
+	aspect-ratio: 16 / 9;
+}
+
+/* Placeholder when an article genuinely has no photograph. A restrained
+   branded panel, never a stock photo standing in for real documentation. */
+.yka-story__figure--empty {
+	display: grid;
+	place-items: center;
+	background: repeating-linear-gradient(
+		135deg,
+		var(--yka-green-100),
+		var(--yka-green-100) 10px,
+		#d6e8dc 10px,
+		#d6e8dc 20px
+	);
+}
+
+.yka-story__figure--empty span {
+	font-size: var(--yka-text-xs);
+	font-weight: var(--yka-weight-semibold);
+	letter-spacing: var(--yka-tracking-label);
+	text-transform: uppercase;
+	color: var(--yka-green-800);
+}
+
+/* =================================================================
+   Header
+   ================================================================= */
+
+.yka-topbar {
+	background: var(--yka-green-950);
+	color: #c9d9cf;
+	font-size: var(--yka-text-xs);
+}
+
+.yka-topbar__inner {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--yka-space-3);
+	min-height: 36px;
+	padding-block: var(--yka-space-1);
+}
+
+.yka-topbar__identity {
+	font-weight: var(--yka-weight-semibold);
+	letter-spacing: var(--yka-tracking-label);
+	text-transform: uppercase;
+	color: var(--yka-white);
+}
+
+.yka-topbar__links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--yka-space-4);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.yka-topbar__links li {
+	margin: 0;
+}
+
+.yka-topbar__links a {
+	color: #c9d9cf;
+	text-decoration: none;
+}
+
+.yka-topbar__links a:hover {
+	color: var(--yka-white);
+	text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+	.yka-topbar__links {
+		display: none;
+	}
+}
+
+.yka-header {
+	position: sticky;
+	top: var(--yka-admin-bar, 0px);
+	z-index: 200;
+	border-bottom: var(--yka-border-width) solid var(--yka-rule);
+	background: var(--yka-white);
+}
+
+.yka-header__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--yka-space-4);
+	min-height: var(--yka-header-height);
+}
+
+.yka-brand {
+	display: flex;
+	align-items: center;
+	gap: var(--yka-space-3);
+	text-decoration: none;
+	color: inherit;
+}
+
+.yka-brand__logo img {
+	width: auto;
+	max-height: 52px;
+}
+
+.yka-brand__text {
+	display: flex;
+	flex-direction: column;
+	line-height: 1.15;
+}
+
+.yka-brand__name {
+	font-family: var(--yka-font-display);
+	font-size: 1.0625rem;
+	font-weight: var(--yka-weight-bold);
+	letter-spacing: var(--yka-tracking-tight);
+	color: var(--yka-green-950);
+}
+
+.yka-brand__sub {
+	font-size: 0.6875rem;
+	font-weight: var(--yka-weight-semibold);
+	letter-spacing: var(--yka-tracking-label);
+	text-transform: uppercase;
+	color: var(--yka-muted);
+}
+
+@media (max-width: 420px) {
+	.yka-brand__sub {
+		display: none;
+	}
+}
+
+.yka-header__actions {
+	display: flex;
+	align-items: center;
+	gap: var(--yka-space-2);
+}
+
+/* =================================================================
+   Primary navigation
+   ================================================================= */
+
+.yka-nav {
+	display: none;
+}
+
+@media (min-width: 1024px) {
+	.yka-nav {
+		display: block;
+		margin-left: auto;
+	}
+}
+
+.yka-nav__list {
+	display: flex;
+	align-items: center;
+	gap: var(--yka-space-1);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.yka-nav__list li {
+	position: relative;
+	margin: 0;
+}
+
+.yka-nav__list a {
+	display: block;
+	padding: var(--yka-space-3) var(--yka-space-3);
+	font-size: var(--yka-text-sm);
+	font-weight: var(--yka-weight-semibold);
+	color: var(--yka-green-950);
+	text-decoration: none;
+	border-bottom: 3px solid transparent;
+}
+
+.yka-nav__list a:hover {
+	color: var(--yka-green-700);
+	border-bottom-color: var(--yka-gold);
+}
+
+.yka-nav__list .current-menu-item > a,
+.yka-nav__list .current-menu-ancestor > a,
+.yka-nav__list .current-menu-parent > a {
+	border-bottom-color: var(--yka-green-800);
+}
+
+/* Submenu: a plain panel with a hairline border, opened on hover and on
+   keyboard focus. Nothing here depends on hover alone. */
+.yka-nav__list .sub-menu {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 20;
+	min-width: 230px;
+	margin: 0;
+	padding: var(--yka-space-2) 0;
+	list-style: none;
+	border: var(--yka-border-width) solid var(--yka-rule);
+	border-top: 3px solid var(--yka-green-800);
+	background: var(--yka-white);
+	box-shadow: var(--yka-shadow-menu);
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(-4px);
+	transition: opacity var(--yka-duration) var(--yka-ease),
+		transform var(--yka-duration) var(--yka-ease),
+		visibility var(--yka-duration);
+}
+
+.yka-nav__list li:hover > .sub-menu,
+.yka-nav__list li:focus-within > .sub-menu,
+.yka-nav__list li.is-open > .sub-menu {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+.yka-nav__list .sub-menu li {
+	margin: 0;
+}
+
+.yka-nav__list .sub-menu a {
+	padding: var(--yka-space-2) var(--yka-space-4);
+	border-bottom: 0;
+	border-left: 3px solid transparent;
+	font-weight: var(--yka-weight-medium);
+}
+
+.yka-nav__list .sub-menu a:hover {
+	border-left-color: var(--yka-gold);
+	background: var(--yka-cream);
+}
+
+/* Disclosure button on submenu parents: visible to keyboard and touch
+   users, so a dropdown is never reachable by hover alone. */
+.yka-submenu-toggle {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: var(--yka-space-1);
+	margin-left: calc(var(--yka-space-2) * -1);
+	border: 0;
+	background: transparent;
+	color: inherit;
+	cursor: pointer;
+}
+
+.yka-submenu-toggle svg {
+	transition: transform var(--yka-duration) var(--yka-ease);
+}
+
+.yka-submenu-toggle[aria-expanded="true"] svg {
+	transform: rotate(180deg);
+}
+
+.yka-nav__list > li {
+	display: flex;
+	align-items: center;
+}
+
+.yka-mobile-nav__list .yka-submenu-toggle {
+	float: right;
+	margin-top: calc(var(--yka-space-3) * -1);
+	padding: var(--yka-space-3);
+}
+
+/* =================================================================
+   Header controls (search + mobile menu button)
+   ================================================================= */
+
+.yka-iconbtn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--yka-space-2);
+	min-width: var(--yka-tap-target);
+	min-height: var(--yka-tap-target);
+	padding: 0 var(--yka-space-2);
+	border: var(--yka-border-width) solid transparent;
+	border-radius: var(--yka-radius);
+	background: transparent;
+	color: var(--yka-green-950);
+	font-size: var(--yka-text-sm);
+	font-weight: var(--yka-weight-semibold);
+	cursor: pointer;
+}
+
+.yka-iconbtn:hover {
+	background: var(--yka-cream);
+}
+
+.yka-iconbtn svg {
+	width: 20px;
+	height: 20px;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 1.8;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+@media (min-width: 1024px) {
+	.yka-nav-toggle {
+		display: none;
+	}
+}
+
+.yka-header-cta {
+	display: none;
+}
+
+@media (min-width: 1180px) {
+	.yka-header-cta {
+		display: inline-flex;
+	}
+}
+
+/* --- search panel ------------------------------------------------- */
+
+.yka-searchpanel {
+	border-bottom: var(--yka-border-width) solid var(--yka-rule);
+	background: var(--yka-cream);
+}
+
+.yka-searchpanel[hidden] {
+	display: none;
+}
+
+.yka-searchpanel__inner {
+	padding-block: var(--yka-space-4);
+}
+
+.yka-searchform {
+	display: flex;
+	gap: var(--yka-space-2);
+}
+
+.yka-searchform input[type="search"] {
+	flex: 1 1 auto;
+}
+
+/* --- mobile navigation -------------------------------------------- */
+
+.yka-mobile-nav {
+	border-bottom: var(--yka-border-width) solid var(--yka-rule);
+	background: var(--yka-white);
+	max-height: calc(100vh - var(--yka-header-height) - var(--yka-admin-bar, 0px));
+	overflow-y: auto;
+	overscroll-behavior: contain;
+}
+
+.yka-mobile-nav[hidden] {
+	display: none;
+}
+
+@media (min-width: 1024px) {
+	.yka-mobile-nav {
+		display: none !important; /* desktop navigation takes over entirely */
+	}
+}
+
+.yka-mobile-nav__list,
+.yka-mobile-nav__list .sub-menu {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.yka-mobile-nav__list li {
+	margin: 0;
+	border-top: var(--yka-border-width) solid var(--yka-rule);
+}
+
+.yka-mobile-nav__list > li:first-child {
+	border-top: 0;
+}
+
+.yka-mobile-nav__list a {
+	display: block;
+	padding: var(--yka-space-3) 0;
+	font-size: var(--yka-text-base);
+	font-weight: var(--yka-weight-semibold);
+	color: var(--yka-green-950);
+	text-decoration: none;
+}
+
+.yka-mobile-nav__list .sub-menu a {
+	padding-left: var(--yka-space-4);
+	font-weight: var(--yka-weight-regular);
+	color: var(--yka-text);
+}
+
+.yka-mobile-nav__list .sub-menu a::before {
+	content: "— ";
+	color: var(--yka-border-strong);
+}
+
+.yka-mobile-nav__utility {
+	padding-block: var(--yka-space-4);
+	border-top: var(--yka-border-width) solid var(--yka-rule);
+}
+
+/* =================================================================
+   Breadcrumbs
+   ================================================================= */
+
+.yka-breadcrumb {
+	padding-block: var(--yka-space-3);
+	font-size: var(--yka-text-xs);
+	color: var(--yka-text-muted);
+}
+
+.yka-breadcrumb ol {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--yka-space-2);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.yka-breadcrumb li {
+	margin: 0;
+}
+
+.yka-breadcrumb li + li::before {
+	content: "›";
+	margin-right: var(--yka-space-2);
+	color: var(--yka-border-strong);
+}
+
+.yka-breadcrumb a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.yka-breadcrumb a:hover {
+	color: var(--yka-link);
+	text-decoration: underline;
+}
+
+.yka-breadcrumb [aria-current="page"] {
+	color: var(--yka-green-900);
+	font-weight: var(--yka-weight-semibold);
+}
+
+/* =================================================================
+   Hero
+   ================================================================= */
+
+.yka-hero {
+	position: relative;
+	background: var(--yka-green-950);
+	color: var(--yka-text-invert);
+}
+
+.yka-hero__media {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+}
+
+.yka-hero__media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* A vertical gradient only — no coloured wash, no glow. The photograph
+   stays recognisable; the scrim exists purely for text contrast. */
+.yka-hero__media::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		180deg,
+		rgba(13, 51, 34, 0.35) 0%,
+		rgba(13, 51, 34, 0.72) 58%,
+		rgba(13, 51, 34, 0.92) 100%
+	);
+}
+
+.yka-hero__inner {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	min-height: clamp(420px, 62vh, 620px);
+	padding-block: var(--yka-space-8) var(--yka-space-7);
+}
+
+.yka-hero__content {
+	max-width: 46rem;
+}
+
+.yka-hero__eyebrow {
+	display: inline-block;
+	margin-bottom: var(--yka-space-4);
+	padding-bottom: var(--yka-space-2);
+	border-bottom: 3px solid var(--yka-gold);
+	font-size: var(--yka-text-xs);
+	font-weight: var(--yka-weight-semibold);
+	letter-spacing: var(--yka-tracking-label);
+	text-transform: uppercase;
+	color: var(--yka-white);
+}
+
+.yka-hero__title {
+	margin: 0 0 var(--yka-space-4);
+	font-size: var(--yka-text-4xl);
+	color: var(--yka-white);
+}
+
+.yka-hero__text {
+	margin: 0 0 var(--yka-space-6);
+	max-width: 52ch;
+	font-size: var(--yka-text-md);
+	color: #dfe9e3;
+}
+
+.yka-hero__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--yka-space-3);
+}
+
+.yka-hero__credit {
+	position: absolute;
+	right: var(--yka-gutter);
+	bottom: var(--yka-space-2);
+	font-size: 0.6875rem;
+	color: rgba(255, 255, 255, 0.62);
+}
+
+/* Fallback when no hero photograph has been supplied yet. */
+.yka-hero--plain {
+	background:
+		linear-gradient(180deg, var(--yka-green-900), var(--yka-green-950));
+}
+
+.yka-hero--plain .yka-hero__inner {
+	min-height: auto;
+	padding-block: var(--yka-space-8);
+}
+
+/* =================================================================
+   Unit panels
+   ================================================================= */
+
+.yka-unit-card {
+	display: flex;
+	flex-direction: column;
+	border-top: 3px solid var(--yka-stamp-color, var(--yka-green-800));
+	background: var(--yka-white);
+}
+
+.yka-unit-card__figure {
+	position: relative;
+	aspect-ratio: 3 / 2;
+	margin: 0;
+	overflow: hidden;
+	background: var(--yka-green-100);
+}
+
+.yka-unit-card__figure img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.yka-unit-card__body {
+	display: flex;
+	flex: 1 1 auto;
+	flex-direction: column;
+	gap: var(--yka-space-3);
+	padding: var(--yka-space-5) 0 0;
+}
+
+.yka-unit-card__title {
+	margin: 0;
+	font-size: var(--yka-text-lg);
+}
+
+.yka-unit-card__title a {
+	color: var(--yka-green-950);
+	text-decoration: none;
+}
+
+.yka-unit-card__title a:hover {
+	text-decoration: underline;
+	text-decoration-color: var(--yka-gold);
+	text-decoration-thickness: 2px;
+}
+
+.yka-unit-card__intro {
+	margin: 0;
+	font-size: var(--yka-text-base);
+	color: #414b44;
+}
+
+.yka-unit-card__links {
+	margin-top: auto;
+	padding-top: var(--yka-space-3);
+}
+
+/* =================================================================
+   Announcements
+   ================================================================= */
+
+.yka-announce {
+	display: flex;
+	gap: var(--yka-space-4);
+	align-items: flex-start;
+}
+
+.yka-announce__date {
+	flex: 0 0 62px;
+	padding-top: var(--yka-space-1);
+	border-top: 2px solid var(--yka-gold);
+	font-size: var(--yka-text-xs);
+	font-weight: var(--yka-weight-semibold);
+	letter-spacing: var(--yka-tracking-label);
+	text-transform: uppercase;
+	color: var(--yka-gold-dark);
+	line-height: 1.3;
+}
+
+.yka-announce__title {
+	margin: 0 0 var(--yka-space-1);
+	font-family: var(--yka-font-body);
+	font-size: var(--yka-text-base);
+	font-weight: var(--yka-weight-semibold);
+	line-height: var(--yka-leading-snug);
+}
+
+.yka-announce__title a {
+	color: var(--yka-green-950);
+	text-decoration: none;
+}
+
+.yka-announce__title a:hover {
+	text-decoration: underline;
+}
+
+.yka-announce__excerpt {
+	margin: 0;
+	font-size: var(--yka-text-sm);
+	color: var(--yka-text-muted);
+}
+
+/* =================================================================
+   Empty states
+   ================================================================= */
+
+.yka-empty {
+	padding: var(--yka-space-6);
+	border: var(--yka-border-width) dashed var(--yka-border-strong);
+	background: var(--yka-cream);
+	color: var(--yka-text-muted);
+	font-size: var(--yka-text-base);
+}
+
+.yka-empty p {
+	margin: 0;
+}
+
+.yka-empty p + p {
+	margin-top: var(--yka-space-3);
+}
+
+/* =================================================================
+   Archive header and list
+   ================================================================= */
+
+.yka-archive-header {
+	margin-bottom: var(--yka-space-6);
+	padding-bottom: var(--yka-space-5);
+	border-bottom: 2px solid var(--yka-green-900);
+}
+
+.yka-archive-header__title {
+	margin: 0 0 var(--yka-space-3);
+	max-width: 22ch;
+	font-size: var(--yka-text-3xl);
+}
+
+.yka-archive-list > .yka-archive-list__item {
+	padding-block: var(--yka-space-6);
+	border-top: var(--yka-border-width) solid var(--yka-rule);
+}
+
+.yka-archive-list > .yka-archive-list__item:first-child {
+	padding-top: 0;
+	border-top: 0;
+}
+
+/* =================================================================
+   Filters (archive)
+   ================================================================= */
+
+.yka-filters {
+	margin-bottom: var(--yka-space-6);
+	padding-bottom: var(--yka-space-5);
+	border-bottom: var(--yka-border-width) solid var(--yka-rule);
+}
+
+.yka-filters__group + .yka-filters__group {
+	margin-top: var(--yka-space-4);
+}
+
+.yka-filters__label {
+	margin: 0 0 var(--yka-space-2);
+	font-size: var(--yka-text-xs);
+	font-weight: var(--yka-weight-semibold);
+	letter-spacing: var(--yka-tracking-label);
+	text-transform: uppercase;
+	color: var(--yka-text-muted);
+}
+
+.yka-filters__list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--yka-space-2);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.yka-filters__list li {
+	margin: 0;
+}
+
+.yka-filters__list a {
+	display: inline-block;
+	padding: 6px var(--yka-space-3);
+	border: var(--yka-border-width) solid var(--yka-rule);
+	border-radius: var(--yka-radius);
+	background: var(--yka-white);
+	font-size: var(--yka-text-sm);
+	color: var(--yka-green-900);
+	text-decoration: none;
+}
+
+.yka-filters__list a:hover {
+	border-color: var(--yka-green-700);
+	background: var(--yka-green-100);
+}
+
+.yka-filters__list a[aria-current] {
+	border-color: var(--yka-green-800);
+	background: var(--yka-green-800);
+	color: var(--yka-white);
+}
+
+/* =================================================================
+   Pagination
+   ================================================================= */
+
+.yka-pagination {
+	margin-top: var(--yka-space-8);
+	padding-top: var(--yka-space-5);
+	border-top: var(--yka-border-width) solid var(--yka-rule);
+}
+
+.yka-pagination .nav-links {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--yka-space-2);
+}
+
+.yka-pagination .page-numbers {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: var(--yka-tap-target);
+	min-height: var(--yka-tap-target);
+	padding: 0 var(--yka-space-3);
+	border: var(--yka-border-width) solid var(--yka-rule);
+	border-radius: var(--yka-radius);
+	background: var(--yka-white);
+	color: var(--yka-green-900);
+	font-size: var(--yka-text-sm);
+	font-weight: var(--yka-weight-semibold);
+	text-decoration: none;
+}
+
+.yka-pagination .page-numbers:hover {
+	border-color: var(--yka-green-700);
+	background: var(--yka-green-100);
+}
+
+.yka-pagination .page-numbers.current {
+	border-color: var(--yka-green-800);
+	background: var(--yka-green-800);
+	color: var(--yka-white);
+}
+
+.yka-pagination .page-numbers.dots {
+	border-color: transparent;
+	background: transparent;
+}
+
+/* =================================================================
+   Contact blocks
+   ================================================================= */
+
+.yka-contact-list {
+	margin: 0;
+	padding: 0;
+}
+
+.yka-contact-list div {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--yka-space-2) var(--yka-space-4);
+	padding-block: var(--yka-space-3);
+	border-top: var(--yka-border-width) solid var(--yka-rule);
+}
+
+.yka-contact-list div:first-child {
+	border-top: 0;
+}
+
+.yka-contact-list dt {
+	flex: 0 0 128px;
+	font-size: var(--yka-text-xs);
+	font-weight: var(--yka-weight-semibold);
+	letter-spacing: var(--yka-tracking-label);
+	text-transform: uppercase;
+	color: var(--yka-text-muted);
+}
+
+.yka-contact-list dd {
+	flex: 1 1 220px;
+	margin: 0;
+}
+
+.yka-placeholder {
+	color: var(--yka-gold-dark);
+	font-style: italic;
+}
+
+/* Map is only fetched once a visitor asks for it — no third-party request
+   on page load. */
+.yka-map {
+	position: relative;
+	aspect-ratio: 16 / 9;
+	display: grid;
+	place-items: center;
+	border: var(--yka-border-width) solid var(--yka-rule);
+	background: var(--yka-green-100);
+}
+
+.yka-map iframe {
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+/* =================================================================
+   Footer
+   ================================================================= */
+
+.yka-footer {
+	background: var(--yka-green-950);
+	color: #c1d2c8;
+	font-size: var(--yka-text-sm);
+}
+
+.yka-footer a {
+	color: #dfe9e3;
+	text-decoration: none;
+}
+
+.yka-footer a:hover {
+	color: var(--yka-white);
+	text-decoration: underline;
+}
+
+.yka-footer__main {
+	display: grid;
+	gap: var(--yka-space-7) var(--yka-space-6);
+	padding-block: var(--yka-space-8) var(--yka-space-7);
+	grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+	.yka-footer__main {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (min-width: 1000px) {
+	.yka-footer__main {
+		grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+	}
+}
+
+.yka-footer__title {
+	margin: 0 0 var(--yka-space-4);
+	padding-bottom: var(--yka-space-2);
+	border-bottom: var(--yka-border-width) solid rgba(255, 255, 255, 0.16);
+	font-family: var(--yka-font-body);
+	font-size: var(--yka-text-xs);
+	font-weight: var(--yka-weight-semibold);
+	letter-spacing: var(--yka-tracking-label);
+	text-transform: uppercase;
+	color: var(--yka-white);
+}
+
+.yka-footer__brand-name {
+	margin: 0 0 var(--yka-space-3);
+	font-family: var(--yka-font-display);
+	font-size: var(--yka-text-lg);
+	color: var(--yka-white);
+}
+
+.yka-footer__description {
+	margin: 0 0 var(--yka-space-4);
+	max-width: 42ch;
+	line-height: var(--yka-leading-normal);
+}
+
+.yka-footer ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.yka-footer li {
+	margin: 0 0 var(--yka-space-2);
+}
+
+.yka-footer__social {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--yka-space-3);
+	margin-top: var(--yka-space-4);
+}
+
+.yka-footer__social a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--yka-tap-target);
+	height: var(--yka-tap-target);
+	border: var(--yka-border-width) solid rgba(255, 255, 255, 0.24);
+	border-radius: var(--yka-radius);
+}
+
+.yka-footer__social a:hover {
+	border-color: var(--yka-gold);
+	background: rgba(255, 255, 255, 0.08);
+}
+
+.yka-footer__social svg {
+	width: 18px;
+	height: 18px;
+	fill: currentColor;
+}
+
+.yka-footer__bottom {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--yka-space-3);
+	padding-block: var(--yka-space-4);
+	border-top: var(--yka-border-width) solid rgba(255, 255, 255, 0.16);
+	font-size: var(--yka-text-xs);
+	color: #9db0a4;
+}
+
+.yka-footer__bottom ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--yka-space-4);
+}
+
+.yka-footer__bottom li {
+	margin: 0;
+}

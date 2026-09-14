@@ -1,0 +1,139 @@
+/**
+ * Design tokens for YKA Portal.
+ *
+ * The single place where colour, type and spacing values are defined.
+ * When Yayasan Kasih Ananda supplies its official brand colours, change
+ * them here and the whole site follows — nothing else hard-codes a hex value.
+ */
+
+:root {
+	/* ---------------------------------------------------- brand colour
+	 * Green is the foundation's identity. It is used for structure and
+	 * emphasis, never as a wash across every surface. Gold is a hairline
+	 * accent only.
+	 *
+	 * Provisional values pending the official logo. Do not present these
+	 * as the organisation's confirmed brand palette.
+	 */
+	--yka-green-950: #0d3322;
+	--yka-green-900: #12462e;
+	--yka-green-800: #18583a;
+	--yka-green-700: #1f6b46;
+	--yka-green-600: #2b7e54;
+	--yka-green-100: #dfeee4;
+
+	--yka-cream: #f7f5ee;
+	--yka-paper: #fcfbf7;
+	--yka-gold: #d2b63f;
+	--yka-gold-dark: #8a7413;
+
+	--yka-ink: #172019;
+	--yka-muted: #66716a;
+	--yka-border: #d9dfda;
+	--yka-border-strong: #b6c0b8;
+	--yka-white: #ffffff;
+
+	/* Roles. Templates reference these, not the raw ramp. */
+	--yka-bg: var(--yka-paper);
+	--yka-bg-alt: var(--yka-cream);
+	--yka-bg-invert: var(--yka-green-950);
+	--yka-text: var(--yka-ink);
+	--yka-text-muted: var(--yka-muted);
+	--yka-text-invert: #eef3ef;
+	--yka-link: var(--yka-green-800);
+	--yka-link-hover: var(--yka-green-600);
+	--yka-rule: var(--yka-border);
+	--yka-accent: var(--yka-gold);
+
+	/* Per-unit accents. Distinct enough to tell apart at a glance, close
+	 * enough that the four units still read as one foundation. */
+	--yka-unit-yayasan: var(--yka-green-900);
+	--yka-unit-sd: #2f7d8c;
+	--yka-unit-smp: var(--yka-green-600);
+	--yka-unit-smk: #8a6a1f;
+
+	/* ------------------------------------------------------- typography */
+	--yka-font-body: "Source Sans 3", ui-sans-serif, system-ui, -apple-system,
+		"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	--yka-font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+	--yka-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+	/* Type scale. Fluid between 360px and 1280px viewports. */
+	--yka-text-xs: 0.75rem;
+	--yka-text-sm: 0.875rem;
+	--yka-text-base: 1rem;
+	--yka-text-md: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+	--yka-text-lg: clamp(1.1875rem, 1.1rem + 0.5vw, 1.375rem);
+	--yka-text-xl: clamp(1.375rem, 1.25rem + 0.8vw, 1.75rem);
+	--yka-text-2xl: clamp(1.625rem, 1.4rem + 1.2vw, 2.25rem);
+	--yka-text-3xl: clamp(2rem, 1.6rem + 1.9vw, 3rem);
+	--yka-text-4xl: clamp(2.25rem, 1.7rem + 2.6vw, 3.75rem);
+
+	--yka-leading-tight: 1.15;
+	--yka-leading-snug: 1.3;
+	--yka-leading-normal: 1.55;
+	--yka-leading-prose: 1.72;
+
+	--yka-tracking-label: 0.08em;
+	--yka-tracking-tight: -0.011em;
+
+	--yka-weight-regular: 400;
+	--yka-weight-medium: 500;
+	--yka-weight-semibold: 600;
+	--yka-weight-bold: 700;
+
+	/* ---------------------------------------------------------- spacing */
+	--yka-space-1: 4px;
+	--yka-space-2: 8px;
+	--yka-space-3: 12px;
+	--yka-space-4: 16px;
+	--yka-space-5: 24px;
+	--yka-space-6: 32px;
+	--yka-space-7: 48px;
+	--yka-space-8: 64px;
+	--yka-space-9: 80px;
+	--yka-space-10: 96px;
+
+	/* Vertical rhythm between major page sections. */
+	--yka-section-gap: clamp(var(--yka-space-7), 6vw, var(--yka-space-9));
+
+	/* --------------------------------------------------------- measures */
+	--yka-width-prose: 68ch;      /* article body — comfortable reading  */
+	--yka-width-narrow: 780px;
+	--yka-width-content: 1180px;  /* editorial grids                     */
+	--yka-width-wide: 1420px;     /* full-bleed sections with padding    */
+	--yka-gutter: clamp(var(--yka-space-4), 4vw, var(--yka-space-6));
+
+	/* ---------------------------------------------------------- shapes
+	 * Restrained on purpose. Large radii make institutional content look
+	 * like a consumer app. */
+	--yka-radius-sm: 2px;
+	--yka-radius: 4px;
+	--yka-radius-md: 8px;
+
+	--yka-border-width: 1px;
+
+	/* Shadows are a last resort. Spacing, rules and contrast come first. */
+	--yka-shadow-menu: 0 6px 24px rgba(13, 51, 34, 0.14);
+
+	/* ----------------------------------------------------------- motion */
+	--yka-duration: 160ms;
+	--yka-ease: cubic-bezier(0.2, 0, 0.2, 1);
+
+	/* ------------------------------------------------------------ misc */
+	--yka-focus-ring: 2px solid var(--yka-green-700);
+	--yka-focus-offset: 2px;
+	--yka-tap-target: 44px;
+	--yka-header-height: 76px;
+}
+
+/* WordPress admin bar shifts the sticky header down. */
+body.admin-bar {
+	--yka-admin-bar: 32px;
+}
+
+@media screen and (max-width: 782px) {
+	body.admin-bar {
+		--yka-admin-bar: 46px;
+	}
+}

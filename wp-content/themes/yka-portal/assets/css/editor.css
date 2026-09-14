@@ -1,0 +1,167 @@
+/**
+ * Block editor canvas styles.
+ *
+ * Loaded alongside tokens.css inside the editor iframe so a writer sees
+ * approximately what a reader will see. Kept intentionally close to the
+ * `.yka-content` rules in editorial.css.
+ */
+
+.editor-styles-wrapper {
+	background: var(--yka-paper);
+	color: var(--yka-ink);
+	font-family: var(--yka-font-body);
+	font-size: var(--yka-text-md);
+	line-height: var(--yka-leading-prose);
+}
+
+.editor-styles-wrapper .wp-block {
+	max-width: var(--yka-width-prose);
+}
+
+.editor-styles-wrapper .wp-block[data-align="wide"],
+.editor-styles-wrapper .wp-block[data-align="full"] {
+	max-width: var(--yka-width-content);
+}
+
+/* ---------------------------------------------------- typography */
+
+.editor-styles-wrapper h1,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3,
+.editor-styles-wrapper h4 {
+	font-family: var(--yka-font-display);
+	font-weight: 600;
+	line-height: var(--yka-leading-tight);
+	letter-spacing: var(--yka-tracking-tight);
+	color: var(--yka-green-950);
+}
+
+.editor-styles-wrapper h1 {
+	font-size: var(--yka-text-3xl);
+}
+
+.editor-styles-wrapper h2 {
+	font-size: var(--yka-text-xl);
+	margin-top: var(--yka-space-7);
+}
+
+.editor-styles-wrapper h3 {
+	font-size: var(--yka-text-lg);
+	margin-top: var(--yka-space-6);
+}
+
+.editor-styles-wrapper h4 {
+	font-family: var(--yka-font-body);
+	font-size: var(--yka-text-md);
+	font-weight: 700;
+}
+
+/* The post title field, so the headline reads as it will on the site. */
+.editor-styles-wrapper .editor-post-title__input,
+.editor-styles-wrapper .wp-block-post-title {
+	font-family: var(--yka-font-display);
+	font-size: var(--yka-text-3xl);
+	font-weight: 600;
+	line-height: 1.1;
+	letter-spacing: var(--yka-tracking-tight);
+	color: var(--yka-green-950);
+}
+
+.editor-styles-wrapper p {
+	line-height: var(--yka-leading-prose);
+}
+
+.editor-styles-wrapper a {
+	color: var(--yka-green-800);
+	text-decoration: underline;
+	text-decoration-color: var(--yka-border-strong);
+}
+
+/* -------------------------------------------------------- blocks */
+
+.editor-styles-wrapper blockquote,
+.editor-styles-wrapper .wp-block-quote {
+	padding-left: var(--yka-space-5);
+	border-left: 3px solid var(--yka-gold);
+	font-family: var(--yka-font-display);
+	font-size: var(--yka-text-lg);
+	color: var(--yka-green-900);
+}
+
+.editor-styles-wrapper .wp-block-pullquote {
+	padding: var(--yka-space-5) 0;
+	border-top: 3px solid var(--yka-gold);
+	border-bottom: 3px solid var(--yka-gold);
+	text-align: left;
+}
+
+.editor-styles-wrapper .wp-block-separator {
+	max-width: 96px;
+	margin-inline: 0;
+	border-top: 3px solid var(--yka-gold);
+	border-bottom: 0;
+}
+
+.editor-styles-wrapper figcaption,
+.editor-styles-wrapper .wp-element-caption {
+	padding-top: var(--yka-space-2);
+	border-top: var(--yka-border-width) solid var(--yka-border);
+	font-family: var(--yka-font-body);
+	font-size: var(--yka-text-sm);
+	color: var(--yka-muted);
+	text-align: left;
+}
+
+.editor-styles-wrapper .wp-block-table td,
+.editor-styles-wrapper .wp-block-table th {
+	border: var(--yka-border-width) solid var(--yka-border);
+	padding: var(--yka-space-3);
+}
+
+.editor-styles-wrapper code {
+	padding: 0.1em 0.35em;
+	border-radius: 2px;
+	background: var(--yka-green-100);
+	color: var(--yka-green-950);
+}
+
+/* ---------------------------------------- block style variations */
+
+.editor-styles-wrapper .is-style-yka-callout {
+	padding: var(--yka-space-5);
+	border-left: 4px solid var(--yka-gold);
+	background: var(--yka-cream);
+}
+
+.editor-styles-wrapper .is-style-yka-bordered img {
+	padding: var(--yka-space-2);
+	border: var(--yka-border-width) solid var(--yka-border-strong);
+	background: #fff;
+}
+
+.editor-styles-wrapper .is-style-yka-checklist {
+	list-style: none;
+	padding-left: 0;
+}
+
+.editor-styles-wrapper .is-style-yka-checklist li {
+	position: relative;
+	padding-left: var(--yka-space-6);
+}
+
+.editor-styles-wrapper .is-style-yka-checklist li::before {
+	content: "";
+	position: absolute;
+	top: 0.55em;
+	left: 0;
+	width: 14px;
+	height: 7px;
+	border-left: 2px solid var(--yka-green-700);
+	border-bottom: 2px solid var(--yka-green-700);
+	transform: rotate(-45deg);
+}
+
+.editor-styles-wrapper .is-style-yka-short {
+	max-width: 96px;
+	margin-inline: 0;
+}

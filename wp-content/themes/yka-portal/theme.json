@@ -1,0 +1,241 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": false,
+		"useRootPaddingAwareAlignments": true,
+		"layout": {
+			"contentSize": "68ch",
+			"wideSize": "1180px"
+		},
+		"color": {
+			"custom": false,
+			"customDuotone": false,
+			"customGradient": false,
+			"defaultDuotone": false,
+			"defaultGradients": false,
+			"defaultPalette": false,
+			"duotone": [],
+			"gradients": [],
+			"link": true,
+			"palette": [
+				{ "slug": "hijau-tua", "color": "#12462e", "name": "Hijau Tua" },
+				{ "slug": "hijau", "color": "#1f6b46", "name": "Hijau" },
+				{ "slug": "hijau-muda", "color": "#dfeee4", "name": "Hijau Muda" },
+				{ "slug": "krem", "color": "#f7f5ee", "name": "Krem" },
+				{ "slug": "kertas", "color": "#fcfbf7", "name": "Kertas" },
+				{ "slug": "emas", "color": "#d2b63f", "name": "Emas" },
+				{ "slug": "tinta", "color": "#172019", "name": "Tinta" },
+				{ "slug": "abu", "color": "#66716a", "name": "Abu-abu" },
+				{ "slug": "putih", "color": "#ffffff", "name": "Putih" }
+			]
+		},
+		"typography": {
+			"customFontSize": false,
+			"defaultFontSizes": false,
+			"dropCap": false,
+			"fluid": true,
+			"lineHeight": true,
+			"writingMode": false,
+			"fontFamilies": [
+				{
+					"slug": "body",
+					"name": "Teks",
+					"fontFamily": "\"Source Sans 3\", ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif"
+				},
+				{
+					"slug": "display",
+					"name": "Judul",
+					"fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif"
+				}
+			],
+			"fontSizes": [
+				{
+					"slug": "small",
+					"name": "Kecil",
+					"size": "0.875rem"
+				},
+				{
+					"slug": "medium",
+					"name": "Sedang",
+					"size": "1.0625rem",
+					"fluid": { "min": "1rem", "max": "1.1875rem" }
+				},
+				{
+					"slug": "large",
+					"name": "Besar",
+					"size": "1.1875rem",
+					"fluid": { "min": "1.125rem", "max": "1.375rem" }
+				},
+				{
+					"slug": "x-large",
+					"name": "Sangat Besar",
+					"size": "1.625rem",
+					"fluid": { "min": "1.375rem", "max": "2.25rem" }
+				}
+			]
+		},
+		"spacing": {
+			"customSpacingSize": false,
+			"margin": true,
+			"padding": true,
+			"units": ["px", "rem", "%"],
+			"spacingSizes": [
+				{ "slug": "20", "name": "Rapat", "size": "8px" },
+				{ "slug": "30", "name": "Kecil", "size": "16px" },
+				{ "slug": "40", "name": "Sedang", "size": "24px" },
+				{ "slug": "50", "name": "Besar", "size": "32px" },
+				{ "slug": "60", "name": "Sangat Besar", "size": "48px" },
+				{ "slug": "70", "name": "Bagian", "size": "64px" }
+			]
+		},
+		"border": {
+			"color": false,
+			"radius": false,
+			"style": false,
+			"width": false
+		},
+		"shadow": {
+			"defaultPresets": false,
+			"presets": []
+		},
+		"blocks": {
+			"core/image": {
+				"border": {
+					"radius": true
+				}
+			}
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "var(--yka-paper, #fcfbf7)",
+			"text": "var(--yka-ink, #172019)"
+		},
+		"typography": {
+			"fontFamily": "var(--yka-font-body)",
+			"fontSize": "var(--yka-text-md)",
+			"lineHeight": "1.72"
+		},
+		"spacing": {
+			"blockGap": "24px",
+			"padding": {
+				"left": "0",
+				"right": "0"
+			}
+		},
+		"elements": {
+			"link": {
+				"color": {
+					"text": "var(--yka-green-800, #18583a)"
+				},
+				":hover": {
+					"color": {
+						"text": "var(--yka-green-600, #2b7e54)"
+					}
+				}
+			},
+			"heading": {
+				"typography": {
+					"fontFamily": "var(--yka-font-display)",
+					"fontWeight": "600",
+					"lineHeight": "1.2"
+				},
+				"color": {
+					"text": "var(--yka-green-950, #0d3322)"
+				}
+			},
+			"h1": {
+				"typography": { "fontSize": "var(--yka-text-3xl)" }
+			},
+			"h2": {
+				"typography": { "fontSize": "var(--yka-text-2xl)" }
+			},
+			"h3": {
+				"typography": { "fontSize": "var(--yka-text-xl)" }
+			},
+			"h4": {
+				"typography": { "fontSize": "var(--yka-text-lg)" }
+			},
+			"button": {
+				"color": {
+					"background": "var(--yka-green-800, #18583a)",
+					"text": "#ffffff"
+				},
+				"typography": {
+					"fontFamily": "var(--yka-font-body)",
+					"fontSize": "0.875rem",
+					"fontWeight": "600"
+				},
+				"border": { "radius": "4px" },
+				"spacing": {
+					"padding": {
+						"top": "12px",
+						"bottom": "12px",
+						"left": "24px",
+						"right": "24px"
+					}
+				},
+				":hover": {
+					"color": { "background": "var(--yka-green-700, #1f6b46)" }
+				}
+			},
+			"caption": {
+				"typography": {
+					"fontSize": "0.875rem"
+				},
+				"color": {
+					"text": "var(--yka-muted, #66716a)"
+				}
+			}
+		},
+		"blocks": {
+			"core/quote": {
+				"typography": {
+					"fontFamily": "var(--yka-font-display)",
+					"fontSize": "var(--yka-text-lg)"
+				},
+				"color": {
+					"text": "var(--yka-green-900, #12462e)"
+				}
+			},
+			"core/separator": {
+				"color": {
+					"text": "var(--yka-gold, #d2b63f)"
+				}
+			},
+			"core/table": {
+				"typography": {
+					"fontSize": "1rem"
+				}
+			}
+		}
+	},
+	"customTemplates": [
+		{
+			"name": "templates/unit-index.php",
+			"title": "Daftar Unit Pendidikan",
+			"postTypes": ["page"]
+		},
+		{
+			"name": "templates/prestasi.php",
+			"title": "Halaman Prestasi",
+			"postTypes": ["page"]
+		},
+		{
+			"name": "templates/pengumuman.php",
+			"title": "Halaman Pengumuman",
+			"postTypes": ["page"]
+		},
+		{
+			"name": "templates/galeri.php",
+			"title": "Halaman Galeri",
+			"postTypes": ["page"]
+		},
+		{
+			"name": "templates/kontak.php",
+			"title": "Halaman Kontak",
+			"postTypes": ["page"]
+		}
+	]
+}

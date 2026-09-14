@@ -1,0 +1,33 @@
+{
+	"name": "yayasan-kasih-ananda/web-portal",
+	"description": "Institutional news and documentation portal for Yayasan Kasih Ananda: the YKA Portal theme and the YKA Core plugin.",
+	"type": "project",
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"php": ">=8.0"
+	},
+	"require-dev": {
+		"squizlabs/php_codesniffer": "^3.9",
+		"wp-coding-standards/wpcs": "^3.1",
+		"phpcompatibility/phpcompatibility-wp": "^2.1",
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		},
+		"optimize-autoloader": true,
+		"sort-packages": true
+	},
+	"scripts": {
+		"lint": "phpcs",
+		"lint:fix": "phpcbf",
+		"check": [
+			"@lint"
+		]
+	},
+	"scripts-descriptions": {
+		"lint": "Run WordPress Coding Standards against the custom theme and plugin only.",
+		"lint:fix": "Automatically fix the coding standard issues that can be fixed."
+	}
+}

@@ -1,0 +1,110 @@
+name: Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  php:
+    name: PHP syntax and coding standards
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+          tools: composer
+
+      - name: Cache Composer packages
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.json') }}
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress
+
+      # Custom code only. WordPress core and third-party plugins are never
+      # linted: fixing another project's style is not this project's job.
+      - name: Check PHP syntax
+        run: |
+          find wp-content/themes/yka-portal \
+               wp-content/plugins/yka-core \
+               scripts/php \
+               -name '*.php' -print0 \
+            | xargs -0 -n1 -P4 php -l
+
+      - name: WordPress Coding Standards
+        run: vendor/bin/phpcs --report=full
+
+  assets:
+    name: Front-end assets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Check JavaScript syntax
+        run: |
+          for file in wp-content/themes/yka-portal/assets/js/*.js \
+                      wp-content/plugins/yka-core/assets/js/*.js; do
+            node --check "$file"
+          done
+
+      - name: Validate theme.json
+        run: node -e "JSON.parse(require('fs').readFileSync('wp-content/themes/yka-portal/theme.json','utf8'))"
+
+  hygiene:
+    name: Repository hygiene
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Hard-coded environment URLs are the most common cause of a broken
+      # staging-to-production migration.
+      - name: No hard-coded environment URLs
+        run: |
+          if grep -rEn 'https?://(yayasankasihananda\.(com|us\.ci)|localhost:[0-9]+|[a-z0-9-]+\.app\.github\.dev)' \
+               --include='*.php' --include='*.css' --include='*.js' \
+               wp-content/themes/yka-portal wp-content/plugins/yka-core \
+             | grep -vE '@link|@see|Plugin URI|Theme URI|Author URI|^\s*\*'; then
+            echo "::error::Hard-coded environment URL found in custom code"
+            exit 1
+          fi
+
+      - name: No dangerous PHP functions
+        run: |
+          if grep -rEn '\b(eval|create_function|shell_exec|passthru|proc_open|popen)\s*\(' \
+               --include='*.php' wp-content/themes/yka-portal wp-content/plugins/yka-core; then
+            echo "::error::Dangerous PHP function call found"
+            exit 1
+          fi
+
+      - name: No committed secrets or archives
+        run: |
+          if git ls-files | grep -E '^\.env$|\.sql$|\.sql\.gz$|wpvividbackups|\.pem$'; then
+            echo "::error::A secret, database dump or backup archive is tracked by Git"
+            exit 1
+          fi
+
+      - name: Custom code is tracked
+        run: |
+          test -f wp-content/themes/yka-portal/style.css
+          test -f wp-content/themes/yka-portal/functions.php
+          test -f wp-content/themes/yka-portal/theme.json
+          test -f wp-content/plugins/yka-core/yka-core.php
