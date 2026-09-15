@@ -1,6 +1,8 @@
 {
   "name": "Yayasan Kasih Ananda Web Portal",
-  "image": "mcr.microsoft.com/devcontainers/php:1-8.3-bookworm",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
       "version": "latest",

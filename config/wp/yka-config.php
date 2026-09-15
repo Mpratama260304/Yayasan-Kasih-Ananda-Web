@@ -130,6 +130,30 @@ if ( 'production' !== WP_ENVIRONMENT_TYPE ) {
 			$_SERVER['HTTPS'] = 'on';
 		}
 
+		/*
+		 * redirect_canonical() rebuilds the requested URL from HTTP_HOST and
+		 * SERVER_PORT, then forces the host back to whatever was requested.
+		 * Left alone, a tunnelled request advertises localhost:8080 while the
+		 * home URL carries no port, so the two never match and every page
+		 * answers 301 to https://localhost/. Restating the request in terms of
+		 * the public address is what any reverse proxy does.
+		 */
+		$yka_parts = (array) parse_url( $yka_url );
+		$yka_host  = (string) ( $yka_parts['host'] ?? '' );
+		$yka_port  = isset( $yka_parts['port'] ) ? (int) $yka_parts['port'] : 0;
+
+		if ( '' !== $yka_host ) {
+			if ( $yka_port < 1 ) {
+				$yka_port = str_starts_with( $yka_url, 'https://' ) ? 443 : 80;
+
+				$_SERVER['HTTP_HOST'] = $yka_host;
+			} else {
+				$_SERVER['HTTP_HOST'] = $yka_host . ':' . $yka_port;
+			}
+
+			$_SERVER['SERVER_PORT'] = (string) $yka_port;
+		}
+
 		define( 'WP_HOME', $yka_url );
 		define( 'WP_SITEURL', $yka_url );
 	}
@@ -145,6 +169,9 @@ if ( 'production' !== WP_ENVIRONMENT_TYPE ) {
 		$yka_secure,
 		$yka_public,
 		$yka_public_host,
+		$yka_parts,
+		$yka_host,
+		$yka_port,
 		$yka_url
 	);
 }

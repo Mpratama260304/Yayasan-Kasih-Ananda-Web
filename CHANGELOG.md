@@ -5,6 +5,25 @@ Proyek ini memakai [Semantic Versioning](https://semver.org/lang/id/).
 
 ---
 
+## [1.0.1] — 2026-09-15
+
+### Diperbaiki
+
+- **Dev container gagal dibangun dan Codespace jatuh ke recovery mode.**
+  Image `devcontainers/php:1-8.3-bookworm` membawa sumber apt milik Yarn yang
+  kunci penandatangannya sudah tidak cocok lagi, sehingga `apt-get update`
+  berakhir dengan galat "is not signed" dan keluar dengan kode 100. Fitur
+  Docker-in-Docker menjalankan `apt-get update` sebelum memasang apa pun,
+  jadi pembangunan kontainer berhenti di sana. `.devcontainer/Dockerfile`
+  baru membuang sumber apt tersebut sebelum fitur mana pun dipasang.
+- **Setiap halaman mengalihkan ke `https://localhost/` di balik terowongan
+  Codespaces.** `redirect_canonical()` menyusun ulang alamat yang diminta
+  dari `HTTP_HOST` dan `SERVER_PORT`, yang masih menunjuk `localhost:8080`
+  meski `WP_HOME` sudah benar. `config/wp/yka-config.php` kini menuliskan
+  ulang keduanya menjadi alamat publik.
+
+---
+
 ## [1.0.0] — 2026-09-14
 
 Rilis pertama: portal berita dan dokumentasi Yayasan Kasih Ananda, siap

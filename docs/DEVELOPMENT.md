@@ -128,6 +128,47 @@ Playwright hanya alat pengembangan. Produksi tidak memerlukannya.
 
 ## Pemecahan masalah
 
+### Codespace terbuka sebagai "recovery container"
+
+Gejalanya: Codespace terbuka, tetapi `docker`, `node`, dan `php` tidak ada,
+dan `cat /etc/os-release` menjawab Alpine, bukan Debian. Berkas
+`/workspaces/.codespaces/.persistedshare/RECOVERY-REASON-FILE` berisi
+`Error code: 1302`.
+
+Artinya dev container gagal dibangun dan GitHub menurunkan sesi ke kontainer
+cadangan. Sebab kegagalannya selalu tercatat di
+`/workspaces/.codespaces/.persistedshare/creation.log`.
+
+**Penyebab yang sudah diperbaiki.** Image `devcontainers/php:1-8.3-bookworm`
+membawa sumber apt milik Yarn. Yarn mengganti kunci penandatangan
+repositorinya, sedangkan kunci di dalam image tidak ikut diperbarui,
+sehingga setiap `apt-get update` berakhir dengan:
+
+```
+E: The repository 'https://dl.yarnpkg.com/debian stable InRelease' is not signed.
+```
+
+Fitur devcontainer menjalankan `apt-get update` sebelum memasang apa pun,
+jadi Docker-in-Docker gagal dan seluruh pembangunan kontainer ikut gagal.
+`.devcontainer/Dockerfile` kini membuang sumber apt itu sebelum fitur mana
+pun dipasang.
+
+**Bila masih masuk recovery.** Rebuild biasa memakai lapisan image yang
+sudah tersimpan, jadi kegagalan lama bisa terbawa:
+
+1. `Ctrl/Cmd + Shift + P`
+2. **Codespaces: Rebuild Container**
+3. pilih **Full Rebuild**
+
+Isi `/workspaces` selalu selamat. Yang hilang hanyalah apa pun yang dipasang
+ke dalam kontainer sebelumnya — termasuk basis data, karena ia tinggal di
+`/var/lib/mysql` milik kontainer. Setelah rebuild berhasil:
+
+```bash
+./scripts/start.sh
+./scripts/bootstrap.sh
+```
+
 ### Aset gagal dimuat dengan `ERR_CONNECTION_REFUSED`
 
 Gejalanya: situs terbuka lewat alamat Codespaces, tetapi seluruh CSS, JS,
@@ -159,6 +200,23 @@ Bila gejalanya muncul kembali:
 ```
 
 Lalu muat ulang peramban dengan mengabaikan cache (Ctrl/Cmd + Shift + R).
+
+### Setiap halaman mengalihkan ke `https://localhost/`
+
+Gejalanya: situs dibuka lewat alamat Codespaces dan setiap permintaan
+dijawab `301` menuju `https://localhost/`, sehingga tidak ada satu halaman
+pun yang terbuka.
+
+**Penyebabnya:** `redirect_canonical()` menyusun ulang alamat yang diminta
+dari `HTTP_HOST` dan `SERVER_PORT`, lalu memaksa hostnya kembali ke host
+yang diminta. Permintaan dari terowongan mengaku `localhost:8080`, sementara
+alamat situs tidak memakai porta, jadi keduanya tidak pernah cocok dan
+WordPress terus mengalihkan.
+
+Menetapkan `WP_HOME` saja tidak cukup. `config/wp/yka-config.php` karena itu
+juga menuliskan ulang `HTTP_HOST` dan `SERVER_PORT` menjadi alamat publik —
+persis yang dilakukan proksi balik mana pun — sehingga permintaan yang
+diterima WordPress konsisten dengan alamat situsnya.
 
 ### "Error establishing a database connection"
 
