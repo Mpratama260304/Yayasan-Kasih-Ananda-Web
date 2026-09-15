@@ -89,18 +89,6 @@ test( 'the foundation settings screen renders every section', async ( { page } )
 	await expect( page.locator( '#yka_org_name' ) ).toBeVisible();
 } );
 
-test( 'the production readiness screen reports real status', async ( { page } ) => {
-	await page.goto( '/wp-admin/admin.php?page=yka-readiness' );
-
-	await expect( page.locator( 'h1' ) ).toContainText( 'Kesiapan Produksi' );
-
-	const rows = page.locator( '.yka-readiness__table tbody tr' );
-	expect( await rows.count() ).toBeGreaterThanOrEqual( 10 );
-
-	// Outside production the screen must say so plainly.
-	await expect( page.locator( '.yka-readiness__env' ) ).toContainText( /LOCAL|STAGING|PRODUCTION/ );
-} );
-
 test( 'unit terms expose their institutional fields', async ( { page } ) => {
 	await page.goto( '/wp-admin/edit-tags.php?taxonomy=yka_unit&post_type=post' );
 

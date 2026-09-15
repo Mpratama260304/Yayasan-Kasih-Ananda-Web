@@ -2,8 +2,8 @@
 
 Kerjakan berurutan. Jangan melewati langkah cadangan.
 
-Halaman **Yayasan → Kesiapan Produksi** di dalam dasbor memeriksa sebagian
-besar butir teknis secara otomatis. Dokumen ini mencakup sisanya.
+Tidak ada halaman dasbor yang mengerjakan ini untukmu. Daftar berikut
+dikerjakan manusia, dan setiap butirnya dapat dibuktikan sendiri.
 
 ---
 
@@ -103,8 +103,8 @@ define( 'AUTOMATIC_UPDATER_DISABLED', false );
       tidak memuat `noindex`
 - [ ] `https://yayasankasihananda.com/robots.txt` tidak memuat
       `Disallow: /`
-- [ ] **Yayasan → Kesiapan Produksi** menampilkan lencana `PRODUCTION`
-- [ ] Setiap butir wajib pada halaman itu berstatus terpenuhi
+- [ ] Lencana di bilah admin menampilkan `PRODUCTION`, bukan `LOCAL` atau
+      `STAGING`
 
 > Inilah kesalahan peluncuran paling mahal: situs produksi tetap `noindex`
 > karena disalin dari staging. Dua pemeriksaan `curl` di atas menyelesaikan

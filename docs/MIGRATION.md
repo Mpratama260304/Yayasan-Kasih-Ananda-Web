@@ -14,6 +14,27 @@ Alat migrasi: **WPvivid Backup & Migration** (`wpvivid-backuprestore`).
 
 ---
 
+## Dua alat, dua pekerjaan berbeda
+
+| | **WPvivid** | **Yayasan → Ekspor & Impor** |
+|---|---|---|
+| Membawa | basis data + seluruh berkas: tema, plugin, media, artikel | susunan situs saja: pengaturan lembaga, unit, kategori, halaman, menu |
+| Ukuran berkas | ratusan MB | puluhan KB, JSON terbaca manusia |
+| Terhadap situs tujuan | **menimpa** seluruhnya | hanya menambah dan memperbarui, tidak pernah menghapus |
+| Dipakai untuk | memindahkan situs yang sudah jadi | membentuk situs baru dari nol, atau menyamakan susunan dua situs |
+
+Untuk pindah ke hosting produksi, **WPvivid** adalah jawabannya — seluruh
+dokumen ini membahas itu.
+
+Blueprint berguna di kasus lain: menyiapkan situs staging baru, atau
+menyamakan susunan dua situs tanpa menyentuh isinya. Karena berupa JSON, ia
+dapat dibaca, di-*diff*, dan disimpan di dalam repositori.
+
+Blueprint **tidak** membawa gambar, artikel, berkas tema, maupun plugin.
+Nomor lampiran media hanya berlaku pada satu basis data.
+
+---
+
 ## Aturan yang tidak boleh dilanggar
 
 1. **Selalu buat cadangan situs tujuan lebih dulu**, bahkan bila situs itu
@@ -106,7 +127,7 @@ Segera setelah restore:
 
 ```
 Pengaturan → Permalink → Simpan Perubahan     (menulis ulang .htaccess)
-Yayasan → Kesiapan Produksi                    (memeriksa seluruh butir)
+Pengaturan → Membaca                          (visibilitas mesin pencari)
 ```
 
 Lalu buka:
@@ -206,10 +227,11 @@ Prosedurnya sama, dengan tambahan:
    Atau dari dasbor produksi: **Berita & Dokumentasi**, cari `[DEMO]`,
    pilih semua, pindahkan ke tempat sampah, lalu kosongkan tempat sampah.
 
-5. Buka **Yayasan → Kesiapan Produksi** dan selesaikan setiap butir yang
-   berstatus "perlu tindakan".
-6. Aktifkan pengindeksan lewat tombol **Perbaiki** pada halaman tersebut.
-   Tombol itu hanya muncul bila domainnya memang domain produksi.
+5. Kerjakan `docs/PRODUCTION-CHECKLIST.md` dari atas ke bawah.
+6. Aktifkan pengindeksan lewat **Pengaturan → Membaca**, dengan menghilangkan
+   centang "Cegah mesin pencari mengindeks situs ini". Penjaga lingkungan
+   tetap memaksa `noindex` sampai nama host dan `WP_ENVIRONMENT_TYPE`
+   keduanya menunjuk produksi.
 7. Kirim peta situs ke Search Console dan Bing.
 8. Aktifkan IndexNow.
 9. Buat cadangan penuh pasca-peluncuran.

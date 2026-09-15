@@ -231,9 +231,9 @@ sebagai nilai basis data yang bisa ikut terbawa migrasi tanpa disadari.
 Lencana lingkungan (`LOCAL` / `STAGING` / `PRODUCTION`) tampil di bilah admin
 untuk staf yang masuk, tidak pernah untuk pengunjung.
 
-Halaman **Yayasan → Kesiapan Produksi** melaporkan status setiap butir dan
-menyediakan tindakan terkendali. Ia tidak pernah mengubah pengaturan secara
-diam-diam hanya karena nama host berubah.
+Tidak ada halaman dasbor yang menilai kesiapan peluncuran. Daftar periksanya
+ada di `docs/PRODUCTION-CHECKLIST.md`, dikerjakan manusia, dan tidak ada satu
+pun tombol yang mengubah pengaturan hanya karena nama host berubah.
 
 ---
 

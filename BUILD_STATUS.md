@@ -148,7 +148,6 @@ memanggilnya otomatis bila diperlukan. Rinciannya di `docs/DEVELOPMENT.md`.
   `NewsArticle`, `BreadcrumbList`, `ImageObject`.
 - Penjaga lingkungan memerlukan konstanta **dan** nama host yang cocok
   sebelum memperlakukan situs sebagai produksi.
-- Halaman **Kesiapan Produksi** dengan 13 pemeriksaan.
 - Peta situs bawaan WordPress dimatikan saat Rank Math aktif.
 
 ### 12. Berbagi sosial
@@ -179,6 +178,10 @@ memanggilnya otomatis bila diperlukan. Rinciannya di `docs/DEVELOPMENT.md`.
 ### 15. Kesiapan migrasi WPvivid
 
 - WPvivid terpasang dan aktif.
+- **Yayasan → Ekspor & Impor**: susunan situs sebagai satu berkas JSON,
+  diterapkan ke WordPress kosong dengan satu klik. Hanya menambah dan
+  memperbarui; tidak pernah menghapus. Diuji dari ekspor sampai impor pada
+  instalasi WordPress kosong, termasuk uji idempoten.
 - Tidak ada satu pun jalur kode yang melakukan restore otomatis.
 - Tidak ada URL lingkungan yang ditulis di dalam kode — diperiksa oleh
   `check.sh`.

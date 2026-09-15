@@ -255,4 +255,8 @@ otomatis benar. Periksa ulang:
       pengindeksan
 
 Butir terakhir adalah kesalahan peluncuran yang paling sering terjadi.
-Halaman **Yayasan → Kesiapan Produksi** memeriksanya untuk Anda.
+Buktikan sendiri dengan `curl`, jangan percaya pada tampilan dasbor:
+
+```bash
+curl -s https://yayasankasihananda.com/ | grep 'name="robots"'
+```

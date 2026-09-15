@@ -16,9 +16,27 @@
 auth.json
 
 # --- WordPress core (extracted from wordpress-*.zip at bootstrap) ---
-/wp/
+# Core under /wp/ is committed. Credentials, runtime data and the
+# bind-mounted custom plugin/theme stay out.
 /wordpress/
 wordpress-*.zip
+
+wp/wp-config.php
+wp/wp-config.php.docker.bak
+wp/wp-content/uploads/
+wp/wp-content/upgrade/
+wp/wp-content/upgrade-temp-backup/
+wp/wp-content/cache/
+wp/wp-content/languages/
+wp/wp-content/wpvivid*/
+wp/wp-content/debug.log
+wp/wp-content/advanced-cache.php
+wp/wp-content/object-cache.php
+wp/wp-content/db.php
+
+# Bind-mounted from /wp-content by docker-compose; tracked there, not here.
+wp/wp-content/plugins/yka-core/
+wp/wp-content/themes/yka-portal/
 
 # --- WordPress runtime content that must never be committed ---
 wp-content/uploads/

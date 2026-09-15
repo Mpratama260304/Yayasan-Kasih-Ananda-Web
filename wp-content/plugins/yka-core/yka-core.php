@@ -75,7 +75,7 @@ function bootstrap(): void {
 		Roles::class,
 		Seo::class,
 		Schema::class,
-		Readiness::class,
+		Blueprint::class,
 		Dev_Mail::class,
 	);
 

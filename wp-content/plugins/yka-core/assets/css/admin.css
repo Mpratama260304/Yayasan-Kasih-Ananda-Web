@@ -261,67 +261,30 @@
 	margin-bottom: 14px;
 }
 
-/* -------------------------------------------------- Settings & readiness */
+/* -------------------------------------------------- Settings */
 .yka-settings__intro {
 	max-width: 60ch;
 }
 
-.yka-readiness__env {
-	font-size: 14px;
+/* -------------------------------------------------- Blueprint */
+.yka-blueprint__intro,
+.yka-blueprint__limits {
+	max-width: 70ch;
 }
 
-.yka-readiness .yka-env-badge {
-	display: inline-block;
-	padding: 2px 9px;
-	border-radius: 3px;
-	font-size: 12px;
-	letter-spacing: 0.06em;
+.yka-blueprint__grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	margin: 20px 0;
 }
 
-.yka-readiness .yka-env-badge--local {
-	background: #2b7e54;
-	color: #fff;
+.yka-blueprint__card {
+	flex: 1 1 320px;
+	max-width: 480px;
+	padding: 16px 20px;
 }
 
-.yka-readiness .yka-env-badge--staging {
-	background: #b8860b;
-	color: #fff;
-}
-
-.yka-readiness .yka-env-badge--production {
-	background: #8b1d1d;
-	color: #fff;
-}
-
-.yka-readiness__table {
-	margin-top: 16px;
-}
-
-.yka-readiness__table td,
-.yka-readiness__table th {
-	vertical-align: top;
-}
-
-.yka-readiness__state {
-	display: inline-block;
-	width: 12px;
-	height: 12px;
-	margin-top: 4px;
-	border-radius: 50%;
-}
-
-.yka-readiness__state--pass {
-	background: #2b7e54;
-}
-
-.yka-readiness__state--fail {
-	background: #b32d2e;
-}
-
-.yka-readiness__state--info {
-	background: #b8860b;
-}
-
-.yka-readiness__table form {
-	margin: 0;
+.yka-blueprint__card h2 {
+	margin-top: 0;
 }

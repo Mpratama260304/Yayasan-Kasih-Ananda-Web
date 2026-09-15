@@ -104,7 +104,8 @@ Setelah pemulihan:
 
 - masuk lagi memakai kredensial **dari saat cadangan dibuat**;
 - **Pengaturan → Permalink → Simpan Perubahan**;
-- buka **Yayasan → Kesiapan Produksi**;
+- **Pengaturan → Membaca** — pastikan visibilitas mesin pencari sesuai
+  lingkungan;
 - kosongkan cache bila hosting memakainya.
 
 ---

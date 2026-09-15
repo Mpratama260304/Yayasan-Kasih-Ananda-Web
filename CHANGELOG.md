@@ -7,6 +7,26 @@ Proyek ini memakai [Semantic Versioning](https://semver.org/lang/id/).
 
 ## [1.0.1] — 2026-09-15
 
+### Ditambahkan
+
+- **Yayasan → Ekspor & Impor.** Seluruh susunan situs — pengaturan lembaga,
+  unit pendidikan beserta metadatanya, kategori, kerangka halaman, dan menu
+  navigasi — dapat diunduh sebagai satu berkas JSON, lalu diterapkan ke
+  WordPress kosong dengan satu klik. Impor hanya membuat dan memperbarui,
+  dicocokkan berdasarkan slug, sehingga tidak dapat menghapus pekerjaan yang
+  sudah ada. Nomor lampiran media sengaja tidak ikut: ID hanya berlaku pada
+  satu basis data, dan membawanya justru menghasilkan tautan putus.
+
+### Dihapus
+
+- **Halaman Yayasan → Kesiapan Produksi.** Daftar periksa peluncuran adalah
+  pekerjaan manusia, bukan layar dasbor yang menilai dirinya sendiri; isinya
+  kini hanya ada di `docs/PRODUCTION-CHECKLIST.md`. Penjaga lingkungan,
+  lencana bilah admin, dan pemaksaan `noindex` tidak berubah.
+- **Pemberitahuan admin "situs ini sengaja tidak dapat diindeks".** Statusnya
+  sudah terbaca dari lencana lingkungan; spanduk berulang di dasbor hanya
+  menambah bising.
+
 ### Diperbaiki
 
 - **Dev container gagal dibangun dan Codespace jatuh ke recovery mode.**
@@ -21,6 +41,9 @@ Proyek ini memakai [Semantic Versioning](https://semver.org/lang/id/).
   dari `HTTP_HOST` dan `SERVER_PORT`, yang masih menunjuk `localhost:8080`
   meski `WP_HOME` sudah benar. `config/wp/yka-config.php` kini menuliskan
   ulang keduanya menjadi alamat publik.
+- Peringatan Rank Math "site is set to No Index" tidak lagi muncul di
+  lingkungan non-produksi, tempat keadaan itu memang disengaja. Di produksi
+  peringatan itu tetap tampil, karena di sana ia menandakan kesalahan nyata.
 
 ---
 
