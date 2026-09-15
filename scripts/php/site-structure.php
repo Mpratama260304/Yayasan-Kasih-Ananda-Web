@@ -442,4 +442,39 @@ $locations['footer']  = $footer_id;
 set_theme_mod( 'nav_menu_locations', $locations );
 WP_CLI::log( '  * menu locations assigned' );
 
+// Seeds the placeholder mark shipped with the theme so a fresh install shows a
+// logo beside the site name. An editor's own upload wins: the import only runs
+// while the theme mod is still empty.
+if ( 0 === (int) get_theme_mod( 'custom_logo' ) ) {
+	$logo_source = get_theme_file_path( 'assets/images/logo-yayasan-kasih-ananda.png' );
+
+	if ( is_readable( $logo_source ) ) {
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		require_once ABSPATH . 'wp-admin/includes/media.php';
+		require_once ABSPATH . 'wp-admin/includes/image.php';
+
+		$logo_temp = wp_tempnam( basename( $logo_source ) );
+
+		if ( $logo_temp && copy( $logo_source, $logo_temp ) ) {
+			$logo_id = media_handle_sideload(
+				array(
+					'name'     => basename( $logo_source ),
+					'tmp_name' => $logo_temp,
+				),
+				0,
+				'Logo Yayasan Kasih Ananda'
+			);
+
+			if ( is_wp_error( $logo_id ) ) {
+				wp_delete_file( $logo_temp );
+				WP_CLI::warning( '  * site logo could not be imported: ' . $logo_id->get_error_message() );
+			} else {
+				update_post_meta( $logo_id, '_wp_attachment_image_alt', 'Logo Yayasan Kasih Ananda' );
+				set_theme_mod( 'custom_logo', $logo_id );
+				WP_CLI::log( '  * site logo imported' );
+			}
+		}
+	}
+}
+
 WP_CLI::success( 'Site structure is in place.' );

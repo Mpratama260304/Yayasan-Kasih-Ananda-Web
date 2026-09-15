@@ -416,8 +416,16 @@ a.yka-unit-stamp:hover {
 	color: inherit;
 }
 
+.yka-brand__logo {
+	display: flex;
+	align-items: center;
+	flex: none;
+}
+
 .yka-brand__logo img {
+	display: block;
 	width: auto;
+	height: auto;
 	max-height: 52px;
 }
 

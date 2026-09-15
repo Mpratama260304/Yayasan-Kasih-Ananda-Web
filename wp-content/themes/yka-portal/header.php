@@ -12,6 +12,7 @@ defined( 'ABSPATH' ) || exit;
 $yka_org_name  = function_exists( 'yka_setting' ) ? (string) yka_setting( 'org_name', get_bloginfo( 'name' ) ) : (string) get_bloginfo( 'name' );
 $yka_phone     = function_exists( 'yka_setting' ) ? (string) yka_setting( 'phone' ) : '';
 $yka_email     = function_exists( 'yka_setting' ) ? (string) yka_setting( 'email' ) : '';
+$yka_logo_id   = (int) get_theme_mod( 'custom_logo' );
 $yka_spmb_page = get_page_by_path( 'spmb' ) ?: get_page_by_path( 'ppdb' );
 ?>
 <!DOCTYPE html>
@@ -57,18 +58,30 @@ $yka_spmb_page = get_page_by_path( 'spmb' ) ?: get_page_by_path( 'ppdb' );
 <header class="yka-header" role="banner">
 	<div class="yka-container yka-container--wide yka-header__inner">
 
-		<?php if ( has_custom_logo() ) : ?>
-			<div class="yka-brand">
-				<span class="yka-brand__logo"><?php the_custom_logo(); ?></span>
-			</div>
-		<?php else : ?>
-			<a class="yka-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-				<span class="yka-brand__text">
-					<span class="yka-brand__name"><?php echo esc_html( $yka_org_name ); ?></span>
-					<span class="yka-brand__sub"><?php esc_html_e( 'Portal Berita &amp; Dokumentasi', 'yka-portal' ); ?></span>
+		<a class="yka-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+			<?php if ( $yka_logo_id > 0 ) : ?>
+				<span class="yka-brand__logo">
+					<?php
+					// Not the_custom_logo(): that wraps its own link, which cannot nest inside this one.
+					echo wp_get_attachment_image(
+						$yka_logo_id,
+						'full',
+						false,
+						array(
+							'class'    => 'yka-brand__mark',
+							'alt'      => '',
+							'decoding' => 'async',
+						)
+					);
+					?>
 				</span>
-			</a>
-		<?php endif; ?>
+			<?php endif; ?>
+
+			<span class="yka-brand__text">
+				<span class="yka-brand__name"><?php echo esc_html( $yka_org_name ); ?></span>
+				<span class="yka-brand__sub"><?php esc_html_e( 'Portal Berita &amp; Dokumentasi', 'yka-portal' ); ?></span>
+			</span>
+		</a>
 
 		<nav class="yka-nav" aria-label="<?php esc_attr_e( 'Navigasi utama', 'yka-portal' ); ?>">
 			<?php
